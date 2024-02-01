@@ -11,7 +11,7 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
         for(String team : teams){
             teamString.append(team).append(", ");
         }
-        teamString.replace(teamString.lastIndexOf(", "), teamString.length(), ".");
+        teamString.replace(teamString.lastIndexOf(", "), teamString.length()-1, ".");
         return super.toString() + "\nHouse: " + house + "\nPrefect: " + prefect + "\nTeams: " + teamString;
     }
 }

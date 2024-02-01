@@ -11,7 +11,7 @@ public class House {
         for(String color : colors){
             colorString.append(color).append(", ");
         }
-        colorString.replace(colorString.lastIndexOf(", "), colorString.length(), ".");
+        colorString.replace(colorString.lastIndexOf(", "), colorString.length()-1, ".");
         return "Name: " + name + "\nFounder: " + founder + "\nColors: " + colorString;
     }
 }

@@ -26,7 +26,7 @@ public class Application {
         //printTeachers();
         //printSubjects();
         //printTeachingMaterials();
-        printCourses();
+        //printCourses();
     }
 
     public void initHouses(){

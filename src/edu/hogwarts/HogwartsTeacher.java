@@ -31,12 +31,12 @@ public class HogwartsTeacher extends Teacher implements HogwartsPerson {
     @Override
     public String toString() {
         return "HogwartsTeacher{\n" +
-                "fullName: " + getFullName() + "\n" +
-                "employment: " + getEmployment() + "\n" +
-                "employmentStart: " + getEmploymentStart() + "\n" +
-                "employmentEnd: " + getEmploymentEnd() + "\n" +
-                "house: " + house + "\n" +
-                "headOfHouse: " + headOfHouse + "\n" +
+                " fullName: " + getFullName() + "\n" +
+                " employment: " + getEmployment() + "\n" +
+                " employmentStart: " + getEmploymentStart() + "\n" +
+                " employmentEnd: " + getEmploymentEnd() + "\n" +
+                " house: " + house.getName() + "\n" +
+                " headOfHouse: " + headOfHouse + "\n" +
                 "}";
     }
 }

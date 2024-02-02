@@ -46,21 +46,25 @@ public class Course {
     @Override
     public String toString() {
         StringBuilder studentString = new StringBuilder();
-        for(Student student : students){
-            studentString.append(student).append(", ");
-        }
-        studentString.replace(studentString.lastIndexOf(", "), studentString.length()-1, ".");
         StringBuilder materialString = new StringBuilder();
-        for(TeachingMaterial material : materials){
-            materialString.append(material).append(", ");
+        if(students.length > 0){
+            for(Student student : students){
+                studentString.append(student.getFirstName()).append(", ");
+            }
+            studentString.replace(studentString.lastIndexOf(", "), studentString.length()-1, ".");
         }
-        materialString.replace(materialString.lastIndexOf(", "), materialString.length()-1, ".");
+        if(materials.length > 0){
+            for(TeachingMaterial material : materials){
+                materialString.append(material.getName()).append(", ");
+            }
+            materialString.replace(materialString.lastIndexOf(", "), materialString.length()-1, ".");
+        }
 
         return "Course{\n" +
-                "subject: " + subject + "\n" +
-                "teacher: " + teacher + "\n" +
-                "students: " + studentString + "\n" +
-                "materials: " + materialString + "\n" +
+                " subject: " + subject.getName() + "\n" +
+                " teacher: " + teacher.getFullName() + "\n" +
+                " students: " + studentString + "\n" +
+                " materials: " + materialString + "\n" +
                 "}";
     }
 }

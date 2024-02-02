@@ -11,7 +11,7 @@ public class House {
         this.colors = colors;
     }
     public House() {
-
+        this.colors = new String[0];
     }
     public String getName() {
         return name;
@@ -36,14 +36,16 @@ public class House {
     @Override
     public String toString() {
         StringBuilder colorString = new StringBuilder();
-        for(String color : colors){
-            colorString.append(color).append(", ");
+        if(colors.length > 0){
+            for(String color : colors){
+                colorString.append(color).append(", ");
+            }
+            colorString.replace(colorString.lastIndexOf(", "), colorString.length()-1, ".");
         }
-        colorString.replace(colorString.lastIndexOf(", "), colorString.length()-1, ".");
         return "House{\n" +
-                "name: " + name + "\n" +
-                "founder: " + founder + "\n" +
-                "colors: " + colorString + "\n" +
+                " name: " + name + "\n" +
+                " founder: " + founder + "\n" +
+                " colors: " + colorString + "\n" +
                 "}";
     }
 }

@@ -6,10 +6,10 @@ public class Application {
         app.initApp();
     }
     public void initApp(){
-        HogwartsStudent harry = new HogwartsStudent("Harry Potter");
-        HogwartsStudent ron = new HogwartsStudent("Ron Weasley");
-        HogwartsStudent hermione = new HogwartsStudent("Hermione Granger");
-        HogwartsStudent neville = new HogwartsStudent("Neville Longbottom");
+        HogwartsStudent harry = new HogwartsStudent();
+        HogwartsStudent ron = new HogwartsStudent();
+        HogwartsStudent hermione = new HogwartsStudent();
+        HogwartsStudent neville = new HogwartsStudent();
 
         System.out.println(harry + "" + ron + hermione + neville);
 

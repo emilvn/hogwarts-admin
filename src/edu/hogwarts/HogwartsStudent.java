@@ -5,8 +5,14 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
     private boolean prefect;
     private String[] teams;
 
-    public HogwartsStudent(String fullName){
-        this.setFullName(fullName);
+    public HogwartsStudent(House house, boolean prefect, String[] teams, int enrollmentYear, int graduationYear, boolean graduated, String fullName){
+        super(enrollmentYear, graduationYear, graduated, fullName);
+        this.house = house;
+        this.prefect = prefect;
+        this.teams = teams;
+    }
+    public HogwartsStudent(){
+        super();
     }
 
     @Override
@@ -16,6 +22,14 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
             teamString.append(team).append(", ");
         }
         teamString.replace(teamString.lastIndexOf(", "), teamString.length()-1, ".");
-        return super.toString() + "\nHouse: " + house + "\nPrefect: " + prefect + "\nTeams: " + teamString;
+        return  "HogwartsStudent{\n" +
+                "fullName" + getFullName() + "\n" +
+                "enrollmentYear: " + getEnrollmentYear() + "\n" +
+                "graduationYear: " + getGraduationYear() + "\n" +
+                "graduated: " + isGraduated() + "\n" +
+                "house: " + house + "\n" +
+                "prefect: " + prefect + "\n" +
+                "teams: " + teamString + "\n" +
+                "}";
     }
 }

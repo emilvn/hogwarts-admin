@@ -6,7 +6,6 @@ public class Person{
     private String middleName;
 
     public Person(){
-
     }
 
     public Person(String fullName){
@@ -77,6 +76,10 @@ public class Person{
 
     @Override
     public String toString(){
-        return this.getClass() + "{\nfirstName:"+firstName+",\nmiddleName:"+middleName+",\nlastName:"+lastName+"\n}";
+        return "Person{\n" +
+                "firstName: " + firstName + "\n" +
+                "middleName: " + middleName + "\n" +
+                "lastName: " + lastName + "\n" +
+                "}";
     }
 }

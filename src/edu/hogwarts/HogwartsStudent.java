@@ -5,6 +5,10 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
     private boolean prefect;
     private String[] teams;
 
+    public HogwartsStudent(String fullName){
+        this.setFullName(fullName);
+    }
+
     @Override
     public String toString() {
         StringBuilder teamString = new StringBuilder();

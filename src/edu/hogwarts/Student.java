@@ -7,6 +7,6 @@ public class Student extends Person{
 
     @Override
     public String toString() {
-        return "Enrollment year: " + enrollmentYear + "\nGraduation year: " + graduationYear + "\nGraduated: " + graduated;
+        return super.toString() + "\nEnrollment year: " + enrollmentYear + "\nGraduation year: " + graduationYear + "\nGraduated: " + graduated;
     }
 }

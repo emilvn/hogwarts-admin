@@ -13,16 +13,6 @@ public class Person{
         setFullName(fullName);
     }
 
-    public Person(String firstName, String lastName){
-        this(firstName, null, lastName);
-    }
-
-    public Person(String firstName, String middleName, String lastName){
-        setFirstName(firstName);
-        setMiddleName(middleName);
-        setLastName(lastName);
-    }
-
     public String getFirstName(){
         return firstName;
     }

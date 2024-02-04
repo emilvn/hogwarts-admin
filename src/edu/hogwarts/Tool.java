@@ -1,27 +1,31 @@
 package src.edu.hogwarts;
 
-public class Tool extends TeachingMaterial{
+public class Tool extends TeachingMaterial {
     private String name;
     private String description;
 
-    public Tool(String name, String description, boolean onShoppingList, boolean required, boolean provided, String notes){
+    public Tool(String name, String description, boolean onShoppingList, boolean required, boolean provided, String notes) {
         super(name, onShoppingList, required, provided, notes);
         this.name = name;
         this.description = description;
     }
-    public Tool(){
+
+    public Tool() {
         super();
     }
 
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }

@@ -1,17 +1,18 @@
 package src.edu.hogwarts;
 
-public class Student extends Person{
+public class Student extends Person {
     private int enrollmentYear;
     private int graduationYear;
     private boolean graduated;
 
-    public Student(int enrollmentYear, int graduationYear, boolean graduated, String fullName){
+    public Student(int enrollmentYear, int graduationYear, boolean graduated, String fullName) {
         super(fullName);
         this.enrollmentYear = enrollmentYear;
         this.graduationYear = graduationYear;
         this.graduated = graduated;
     }
-    public Student(){
+
+    public Student() {
         super();
     }
 

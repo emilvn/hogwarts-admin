@@ -10,24 +10,31 @@ public class House {
         this.founder = founder;
         this.colors = colors;
     }
+
     public House() {
         this.colors = new String[0];
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getFounder() {
         return founder;
     }
+
     public void setFounder(String founder) {
         this.founder = founder;
     }
+
     public String[] getColors() {
         return colors;
     }
+
     public void setColors(String[] colors) {
         this.colors = colors;
     }
@@ -36,11 +43,11 @@ public class House {
     @Override
     public String toString() {
         StringBuilder colorString = new StringBuilder();
-        if(colors.length > 0){
-            for(String color : colors){
+        if (colors.length > 0) {
+            for (String color : colors) {
                 colorString.append(color).append(", ");
             }
-            colorString.replace(colorString.lastIndexOf(", "), colorString.length()-1, ".");
+            colorString.replace(colorString.lastIndexOf(", "), colorString.length() - 1, ".");
         }
         return "House{\n" +
                 " name: " + name + "\n" +

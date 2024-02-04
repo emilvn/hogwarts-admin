@@ -9,11 +9,13 @@ public class Application {
     Subject[] subjects;
     Course[] courses;
     TeachingMaterial[] materials;
+
     public static void main(String[] args) {
         Application app = new Application();
         app.initApp();
     }
-    public void initApp(){
+
+    public void initApp() {
         initHouses();
         initStudents();
         initTeachers();
@@ -29,7 +31,7 @@ public class Application {
         //printCourses();
     }
 
-    public void initHouses(){
+    public void initHouses() {
         var gryffindor = new House();
         var hufflepuff = new House();
         var ravenclaw = new House();
@@ -54,7 +56,7 @@ public class Application {
         houses = new House[]{gryffindor, hufflepuff, ravenclaw, slytherin};
     }
 
-    public void initStudents(){
+    public void initStudents() {
         var harry = new HogwartsStudent();
         var ron = new HogwartsStudent();
         var hermione = new HogwartsStudent();
@@ -101,7 +103,7 @@ public class Application {
         students = new HogwartsStudent[]{harry, ron, hermione, neville, luna, draco};
     }
 
-    public void initTeachers(){
+    public void initTeachers() {
         var snape = new HogwartsTeacher();
         var slughorn = new HogwartsTeacher();
 
@@ -122,7 +124,7 @@ public class Application {
         teachers = new HogwartsTeacher[]{snape, slughorn};
     }
 
-    public void initSubjects(){
+    public void initSubjects() {
         var potions = new Subject();
 
         potions.setName("Potions");
@@ -132,7 +134,7 @@ public class Application {
         subjects = new Subject[]{potions};
     }
 
-    public void initTeachingMaterials(){
+    public void initTeachingMaterials() {
         var textBook = new TextBook();
         var wand = new Wand();
         var tool = new Tool();
@@ -175,7 +177,7 @@ public class Application {
         materials = new TeachingMaterial[]{textBook, wand, tool, ingredient};
     }
 
-    public void initCourses(){
+    public void initCourses() {
         var potions = new Course();
         potions.setSubject(subjects[0]);
         potions.setTeacher(teachers[1]);
@@ -186,38 +188,38 @@ public class Application {
     }
 
 
-    public void printHouses(){
-        for(House house : houses){
+    public void printHouses() {
+        for (House house : houses) {
             System.out.println(house);
         }
     }
 
-    public void printStudents(){
-        for(Student student : students){
+    public void printStudents() {
+        for (Student student : students) {
             System.out.println(student);
         }
     }
 
-    public void printTeachers(){
-        for(HogwartsTeacher teacher : teachers){
+    public void printTeachers() {
+        for (HogwartsTeacher teacher : teachers) {
             System.out.println(teacher);
         }
     }
 
-    public void printSubjects(){
-        for(Subject subject : subjects){
+    public void printSubjects() {
+        for (Subject subject : subjects) {
             System.out.println(subject);
         }
     }
 
-    public void printTeachingMaterials(){
-        for(TeachingMaterial material : materials){
+    public void printTeachingMaterials() {
+        for (TeachingMaterial material : materials) {
             System.out.println(material);
         }
     }
 
-    public void printCourses(){
-        for(Course course : courses){
+    public void printCourses() {
+        for (Course course : courses) {
             System.out.println(course);
         }
     }

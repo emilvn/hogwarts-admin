@@ -38,7 +38,7 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
         return teams;
     }
 
-    public void setTeams(String[] teams) {
+    public void setTeams(String... teams) {
         this.teams = teams;
     }
 

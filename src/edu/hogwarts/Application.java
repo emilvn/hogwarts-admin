@@ -24,7 +24,7 @@ public class Application {
         initCourses();
 
         //printHouses();
-        //printStudents();
+        printStudents();
         //printTeachers();
         //printSubjects();
         //printTeachingMaterials();
@@ -69,36 +69,43 @@ public class Application {
         harry.setGraduationYear(1998);
         harry.setGraduated(true);
         harry.setHouse(houses[0]);
+        harry.setTeams("Quidditch");
 
         ron.setFullName("Ronald Bilius Weasley");
         ron.setEnrollmentYear(1991);
         ron.setGraduationYear(1998);
         ron.setGraduated(true);
         ron.setHouse(houses[0]);
+        ron.setTeams("Quidditch", "Wizard Chess");
 
         hermione.setFullName("Hermione Jean Granger");
         hermione.setEnrollmentYear(1991);
         hermione.setGraduationYear(1998);
         hermione.setGraduated(true);
         hermione.setHouse(houses[0]);
+        String[] teams = {"Wizard Chess", "SPEW"};
+        hermione.setTeams(teams);
 
         neville.setFullName("Neville Longbottom");
         neville.setEnrollmentYear(1991);
         neville.setGraduationYear(1998);
         neville.setGraduated(true);
         neville.setHouse(houses[0]);
+        neville.setTeams("Herbology");
 
         luna.setFullName("Luna Lovegood");
         luna.setEnrollmentYear(1992);
         luna.setGraduationYear(1999);
         luna.setGraduated(true);
         luna.setHouse(houses[2]);
+        luna.setTeams("Quidditch", "Wizard Chess", "SPEW");
 
         draco.setFullName("Draco Malfoy");
         draco.setEnrollmentYear(1991);
         draco.setGraduationYear(1998);
         draco.setGraduated(true);
         draco.setHouse(houses[3]);
+        draco.setTeams("Quidditch", "Wizard Chess", "Duelling Club");
 
         students = new HogwartsStudent[]{harry, ron, hermione, neville, luna, draco};
     }

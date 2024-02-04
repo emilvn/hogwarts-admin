@@ -35,7 +35,7 @@ public class House {
         return colors;
     }
 
-    public void setColors(String[] colors) {
+    public void setColors(String... colors) {
         this.colors = colors;
     }
 

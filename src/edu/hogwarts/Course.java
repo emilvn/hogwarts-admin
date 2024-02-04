@@ -40,7 +40,7 @@ public class Course {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(Student... students) {
         this.students = students;
     }
 
@@ -48,7 +48,7 @@ public class Course {
         return materials;
     }
 
-    public void setMaterials(TeachingMaterial[] materials) {
+    public void setMaterials(TeachingMaterial... materials) {
         this.materials = materials;
     }
 

@@ -39,7 +39,7 @@ public class YearGroup {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(Student... students) {
         this.students = students;
     }
 

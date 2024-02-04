@@ -23,12 +23,12 @@ public class Application {
         initTeachingMaterials();
         initCourses();
 
-        //printHouses();
+        printHouses();
         printStudents();
-        //printTeachers();
-        //printSubjects();
-        //printTeachingMaterials();
-        //printCourses();
+        printTeachers();
+        printSubjects();
+        printTeachingMaterials();
+        printCourses();
     }
 
     public void initHouses() {

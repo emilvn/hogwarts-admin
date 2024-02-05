@@ -3,12 +3,12 @@ package src.edu.hogwarts;
 import java.time.LocalDate;
 
 public class Application {
-    House[] houses;
-    HogwartsStudent[] students;
-    HogwartsTeacher[] teachers;
-    Subject[] subjects;
-    Course[] courses;
-    TeachingMaterial[] materials;
+    private House[] houses;
+    private HogwartsStudent[] students;
+    private HogwartsTeacher[] teachers;
+    private Subject[] subjects;
+    private Course[] courses;
+    private TeachingMaterial[] materials;
 
     public static void main(String[] args) {
         Application app = new Application();

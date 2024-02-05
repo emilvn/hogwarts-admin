@@ -64,18 +64,6 @@ public class Person {
         return middleName != null;
     }
 
-    public String capitalize(String str) {
-        char firstChar = str.charAt(0);
-        if (!str.contains(" ") && str.contains("-")) {
-            return Character.toUpperCase(firstChar) + str.substring(1).toLowerCase();
-        } else if (str.contains("-") && (str.indexOf("-") < str.indexOf(" ") || !str.contains(" "))) {
-            String capitalized = Character.toUpperCase(firstChar) + str.substring(1, str.indexOf("-")).toLowerCase();
-            return capitalized + "-" + capitalize(str.substring(str.indexOf("-") + 1));
-        }
-        String capitalized = Character.toUpperCase(firstChar) + str.substring(1, str.indexOf(" ")).toLowerCase();
-        return capitalized + " " + capitalize(str.substring(str.indexOf(" ") + 1));
-    }
-
 
     @Override
     public String toString() {

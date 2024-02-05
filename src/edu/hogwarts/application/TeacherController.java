@@ -1,20 +1,23 @@
 package src.edu.hogwarts.application;
 
+import src.edu.generic.Controller;
 import src.edu.hogwarts.data.HogwartsTeacher;
 
-public class TeacherController extends HogwartsController<HogwartsTeacher> {
-    private HogwartsTeacher[] teachers;
+import java.util.ArrayList;
+import java.util.Collections;
 
-    public TeacherController(HogwartsTeacher... teachers){
-        super();
-        this.teachers = teachers;
-    }
+public class TeacherController extends Controller<HogwartsTeacher> {
+    private final ArrayList<HogwartsTeacher> teachers = new ArrayList<>();
+
     public TeacherController(){
         super();
-        teachers = new HogwartsTeacher[0];
+    }
+    public TeacherController(HogwartsTeacher... teachers){
+        super();
+        Collections.addAll(this.teachers, teachers);
     }
 
-    public HogwartsTeacher[] getAll(){
+    public ArrayList<HogwartsTeacher> getAll(){
         return teachers;
     }
     public void add(HogwartsTeacher teacher){
@@ -22,7 +25,7 @@ public class TeacherController extends HogwartsController<HogwartsTeacher> {
     }
 
     public void add(HogwartsTeacher[] teachers){
-        this.teachers = teachers;
+        Collections.addAll(this.teachers, teachers);
     }
     public HogwartsTeacher get(String id){
         //TODO: get( id ) - der returnerer et enkelt Student objekt

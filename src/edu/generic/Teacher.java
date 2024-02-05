@@ -9,8 +9,8 @@ public class Teacher extends Person {
     private LocalDate employmentStart;
     private LocalDate employmentEnd;
 
-    public Teacher(EmpType employment, LocalDate employmentStart, LocalDate employmentEnd, String fullName) {
-        super(fullName);
+    public Teacher(EmpType employment, LocalDate employmentStart, LocalDate employmentEnd, String fullName, LocalDate birthDate) {
+        super(fullName, birthDate);
         this.employment = employment;
         this.employmentStart = employmentStart;
         this.employmentEnd = employmentEnd;

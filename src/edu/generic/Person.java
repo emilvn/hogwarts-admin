@@ -1,15 +1,25 @@
 package src.edu.generic;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.UUID;
+
 public class Person {
     private String firstName;
     private String lastName;
     private String middleName;
+    private LocalDate birthDate;
+    private final UUID id;
 
     public Person() {
+        this.id = UUID.randomUUID();
+        this.birthDate = LocalDate.now();
     }
 
-    public Person(String fullName) {
+    public Person(String fullName, LocalDate birthDate) {
+        this();
         setFullName(fullName);
+        this.birthDate = birthDate;
     }
 
     public String getFirstName() {
@@ -59,6 +69,20 @@ public class Person {
         setLastName(fullName.substring(lastSpaceIndex + 1));
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public int getAge() {
+        return Period.between(birthDate, LocalDate.now()).getYears();
+    }
 
     public boolean hasMiddleName() {
         return middleName != null;
@@ -73,4 +97,6 @@ public class Person {
                 "lastName: " + lastName + "\n" +
                 "}";
     }
+
+
 }

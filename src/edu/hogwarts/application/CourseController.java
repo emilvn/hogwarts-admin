@@ -1,20 +1,23 @@
 package src.edu.hogwarts.application;
 
+import src.edu.generic.Controller;
 import src.edu.hogwarts.data.Course;
 
-public class CourseController extends HogwartsController<Course>{
-    private Course[] courses;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class CourseController extends Controller<Course> {
+    private final ArrayList<Course> courses = new ArrayList<>();
 
     public CourseController() {
         super();
-        this.courses = new Course[0];
     }
     public CourseController(Course... courses) {
         super();
-        this.courses = courses;
+        Collections.addAll(this.courses, courses);
     }
 
-    public Course[] getAll() {
+    public ArrayList<Course> getAll() {
         return this.courses;
     }
 
@@ -23,7 +26,7 @@ public class CourseController extends HogwartsController<Course>{
     }
 
     public void add(Course... courses) {
-        this.courses = courses;
+        Collections.addAll(this.courses, courses);
     }
 
     public Course get(String id) {

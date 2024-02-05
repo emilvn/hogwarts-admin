@@ -1,27 +1,30 @@
 package src.edu.hogwarts.application;
 
+import src.edu.generic.Controller;
 import src.edu.hogwarts.data.HogwartsStudent;
 
-public class StudentController extends HogwartsController<HogwartsStudent> {
-    private HogwartsStudent[] students;
+import java.util.ArrayList;
+import java.util.Collections;
 
-    public StudentController(HogwartsStudent... students){
-        super();
-        this.students = students;
-    }
+public class StudentController extends Controller<HogwartsStudent> {
+    private final ArrayList<HogwartsStudent> students = new ArrayList<>();
+
     public StudentController(){
         super();
-        students = new HogwartsStudent[0];
+    }
+    public StudentController(HogwartsStudent... students){
+        super();
+        Collections.addAll(this.students, students);
     }
 
-    public HogwartsStudent[] getAll(){
+    public ArrayList<HogwartsStudent> getAll(){
         return students;
     }
     public void add(HogwartsStudent student){
         //TODO: add( Student ) - der modtager et Student-objekt, gemmer det i en liste, og tildeler det et id.
     }
     public void add(HogwartsStudent[] students){
-        this.students = students;
+        Collections.addAll(this.students, students);
     }
     public HogwartsStudent get(String id){
         //TODO: get( id ) - der returnerer et enkelt Student objekt

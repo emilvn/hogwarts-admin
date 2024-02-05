@@ -3,24 +3,26 @@ package src.edu.hogwarts.data;
 import src.edu.generic.Student;
 import src.edu.generic.Teacher;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 public class Course {
     private Subject subject;
     private Teacher teacher;
-    private Student[] students;
+    private ArrayList<HogwartsStudent> students;
     private TeachingMaterial[] materials;
+    private final UUID id;
 
-    public Course(Subject subject, Teacher teacher, Student[] students, TeachingMaterial[] materials) {
+    public Course(Subject subject, Teacher teacher, ArrayList<HogwartsStudent> students, TeachingMaterial[] materials) {
         this.subject = subject;
         this.teacher = teacher;
         this.students = students;
         this.materials = materials;
+        this.id = UUID.randomUUID();
     }
 
     public Course() {
-        this.subject = new Subject();
-        this.teacher = new Teacher();
-        this.students = new Student[0];
-        this.materials = new TeachingMaterial[0];
+        this(new Subject(), new Teacher(), new ArrayList<>(), new TeachingMaterial[0]);
     }
 
     public Subject getSubject() {
@@ -39,11 +41,11 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public Student[] getStudents() {
+    public ArrayList<HogwartsStudent> getStudents() {
         return students;
     }
 
-    public void setStudents(Student... students) {
+    public void setStudents(ArrayList<HogwartsStudent> students) {
         this.students = students;
     }
 
@@ -55,11 +57,15 @@ public class Course {
         this.materials = materials;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         StringBuilder studentString = new StringBuilder();
         StringBuilder materialString = new StringBuilder();
-        if (students.length > 0) {
+        if (!students.isEmpty()) {
             for (Student student : students) {
                 studentString.append(student.getFirstName()).append(", ");
             }
@@ -73,10 +79,13 @@ public class Course {
         }
 
         return "Course{\n" +
+                " id: " + id + "\n" +
                 " subject: " + subject.getName() + "\n" +
                 " teacher: " + teacher.getFullName() + "\n" +
                 " students: " + studentString + "\n" +
                 " materials: " + materialString + "\n" +
                 "}";
     }
+
+
 }

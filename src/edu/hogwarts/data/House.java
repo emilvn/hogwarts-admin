@@ -1,43 +1,56 @@
 package src.edu.hogwarts.data;
 
 public class House {
-    private HouseName name;
-    private String founder;
-    private String[] colors;
+    private final String name;
+    private final String founder;
+    private final String[] colors;
+    private static final House gryffindor = new House("Gryffindor", "Godric Gryffindor", "scarlet", "gold");
+    private static final House hufflepuff = new House("Hufflepuff", "Helga Hufflepuff", "yellow", "black");
+    private static final House ravenclaw = new House("Ravenclaw", "Rowena Ravenclaw", "blue", "silver");
+    private static final House slytherin = new House("Slytherin", "Salazar Slytherin", "green", "silver");
+    private static final House unknown = new House();
 
-    public House(HouseName name, String founder, String... colors) {
+    public House(String name, String founder, String... colors) {
         this.name = name;
         this.founder = founder;
         this.colors = colors;
     }
 
     public House() {
+        this.name = "Unknown";
+        this.founder = "Unknown";
         this.colors = new String[0];
-        this.name = HouseName.UNASSIGNED;
     }
 
-    public HouseName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(HouseName name) {
-        this.name = name;
+    public static House getGryffindor() {
+        return gryffindor;
+    }
+
+    public static House getHufflepuff() {
+        return hufflepuff;
+    }
+
+    public static House getRavenclaw() {
+        return ravenclaw;
+    }
+
+    public static House getSlytherin() {
+        return slytherin;
+    }
+    public static House getUnknown() {
+        return unknown;
     }
 
     public String getFounder() {
         return founder;
     }
 
-    public void setFounder(String founder) {
-        this.founder = founder;
-    }
-
     public String[] getColors() {
         return colors;
-    }
-
-    public void setColors(String... colors) {
-        this.colors = colors;
     }
 
 

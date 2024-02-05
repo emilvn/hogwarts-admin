@@ -6,13 +6,12 @@ import src.edu.hogwarts.data.*;
 import java.time.LocalDate;
 
 public class Application {
-    private House[] houses;
     private Subject[] subjects;
-    private Course[] courses;
     private TeachingMaterial[] materials;
 
     private StudentController studentController;
     private TeacherController teacherController;
+    private CourseController courseController;
 
     public static void main(String[] args) {
         Application app = new Application();
@@ -22,7 +21,7 @@ public class Application {
     public void initApp() {
         studentController = new StudentController();
         teacherController = new TeacherController();
-        initHouses();
+        courseController = new CourseController();
         initStudents();
         initTeachers();
         initSubjects();
@@ -37,31 +36,6 @@ public class Application {
         printCourses();
     }
 
-    public void initHouses() {
-        var gryffindor = new House();
-        var hufflepuff = new House();
-        var ravenclaw = new House();
-        var slytherin = new House();
-
-        gryffindor.setName(HouseName.GRYFFINDOR);
-        gryffindor.setFounder("Godric Gryffindor");
-        gryffindor.setColors(new String[]{"scarlet", "gold"});
-
-        hufflepuff.setName(HouseName.HUFFLEPUFF);
-        hufflepuff.setFounder("Helga Hufflepuff");
-        hufflepuff.setColors(new String[]{"yellow", "black"});
-
-        ravenclaw.setName(HouseName.RAVENCLAW);
-        ravenclaw.setFounder("Rowena Ravenclaw");
-        ravenclaw.setColors(new String[]{"blue", "silver"});
-
-        slytherin.setName(HouseName.SLYTHERIN);
-        slytherin.setFounder("Salazar Slytherin");
-        slytherin.setColors(new String[]{"green", "silver"});
-
-        houses = new House[]{gryffindor, hufflepuff, ravenclaw, slytherin};
-    }
-
     public void initStudents() {
         var harry = new HogwartsStudent();
         var ron = new HogwartsStudent();
@@ -74,21 +48,21 @@ public class Application {
         harry.setEnrollmentYear(1991);
         harry.setGraduationYear(1998);
         harry.setGraduated(true);
-        harry.setHouse(houses[0]);
+        harry.setHouse(House.getGryffindor());
         harry.setTeams("Quidditch");
 
         ron.setFullName("Ronald Bilius Weasley");
         ron.setEnrollmentYear(1991);
         ron.setGraduationYear(1998);
         ron.setGraduated(true);
-        ron.setHouse(houses[0]);
+        ron.setHouse(House.getGryffindor());
         ron.setTeams("Quidditch", "Wizard Chess");
 
         hermione.setFullName("Hermione Jean Granger");
         hermione.setEnrollmentYear(1991);
         hermione.setGraduationYear(1998);
         hermione.setGraduated(true);
-        hermione.setHouse(houses[0]);
+        hermione.setHouse(House.getGryffindor());
         String[] teams = {"Wizard Chess", "SPEW"};
         hermione.setTeams(teams);
 
@@ -96,21 +70,21 @@ public class Application {
         neville.setEnrollmentYear(1991);
         neville.setGraduationYear(1998);
         neville.setGraduated(true);
-        neville.setHouse(houses[0]);
+        neville.setHouse(House.getGryffindor());
         neville.setTeams("Herbology");
 
         luna.setFullName("Luna Lovegood");
         luna.setEnrollmentYear(1992);
         luna.setGraduationYear(1999);
         luna.setGraduated(true);
-        luna.setHouse(houses[2]);
+        luna.setHouse(House.getRavenclaw());
         luna.setTeams("Quidditch", "Wizard Chess", "SPEW");
 
         draco.setFullName("Draco Malfoy");
         draco.setEnrollmentYear(1991);
         draco.setGraduationYear(1998);
         draco.setGraduated(true);
-        draco.setHouse(houses[3]);
+        draco.setHouse(House.getSlytherin());
         draco.setTeams("Quidditch", "Wizard Chess", "Duelling Club");
 
         var students = new HogwartsStudent[]{harry, ron, hermione, neville, luna, draco};
@@ -122,14 +96,14 @@ public class Application {
         var slughorn = new HogwartsTeacher();
 
         snape.setFullName("Severus Snape");
-        snape.setHouse(houses[3]);
+        snape.setHouse(House.getSlytherin());
         snape.setHeadOfHouse(true);
         snape.setEmployment(EmpType.TEACHER);
         snape.setEmploymentStart(LocalDate.of(1981, 9, 1));
         snape.setEmploymentEnd(LocalDate.of(1998, 6, 30));
 
         slughorn.setFullName("Horace Slughorn");
-        slughorn.setHouse(houses[3]);
+        slughorn.setHouse(House.getSlytherin());
         slughorn.setHeadOfHouse(false);
         slughorn.setEmployment(EmpType.TEACHER);
         slughorn.setEmploymentStart(LocalDate.of(1931, 9, 1));
@@ -195,28 +169,30 @@ public class Application {
     public void initCourses() {
         var potions = new Course();
         potions.setSubject(subjects[0]);
-        potions.setTeacher(teacherController.getTeachers()[1]);
-        potions.setStudents(studentController.getStudents());
+        potions.setTeacher(teacherController.getAll()[1]);
+        potions.setStudents(studentController.getAll());
         potions.setMaterials(materials);
 
-        courses = new Course[]{potions};
+        var courses = new Course[]{potions};
+        courseController.add(courses);
     }
 
 
     public void printHouses() {
-        for (House house : houses) {
-            System.out.println(house);
-        }
+        System.out.println(House.getGryffindor());
+        System.out.println(House.getHufflepuff());
+        System.out.println(House.getRavenclaw());
+        System.out.println(House.getSlytherin());
     }
 
     public void printStudents() {
-        for (Student student : studentController.getStudents()) {
+        for (Student student : studentController.getAll()) {
             System.out.println(student);
         }
     }
 
     public void printTeachers() {
-        for (HogwartsTeacher teacher : teacherController.getTeachers()) {
+        for (HogwartsTeacher teacher : teacherController.getAll()) {
             System.out.println(teacher);
         }
     }
@@ -234,7 +210,7 @@ public class Application {
     }
 
     public void printCourses() {
-        for (Course course : courses) {
+        for (Course course : courseController.getAll()) {
             System.out.println(course);
         }
     }

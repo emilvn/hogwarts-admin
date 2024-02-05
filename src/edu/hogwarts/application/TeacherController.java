@@ -1,19 +1,20 @@
 package src.edu.hogwarts.application;
 
-import src.edu.generic.Controller;
 import src.edu.hogwarts.data.HogwartsTeacher;
 
-public class TeacherController implements Controller<HogwartsTeacher> {
+public class TeacherController extends HogwartsController<HogwartsTeacher> {
     private HogwartsTeacher[] teachers;
 
     public TeacherController(HogwartsTeacher... teachers){
+        super();
         this.teachers = teachers;
     }
     public TeacherController(){
+        super();
         teachers = new HogwartsTeacher[0];
     }
 
-    public HogwartsTeacher[] getTeachers(){
+    public HogwartsTeacher[] getAll(){
         return teachers;
     }
     public void add(HogwartsTeacher teacher){

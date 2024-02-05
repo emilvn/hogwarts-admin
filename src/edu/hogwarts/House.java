@@ -1,11 +1,11 @@
 package src.edu.hogwarts;
 
 public class House {
-    private String name;
+    private HouseName name;
     private String founder;
     private String[] colors;
 
-    public House(String name, String founder, String... colors) {
+    public House(HouseName name, String founder, String... colors) {
         this.name = name;
         this.founder = founder;
         this.colors = colors;
@@ -13,13 +13,14 @@ public class House {
 
     public House() {
         this.colors = new String[0];
+        this.name = HouseName.UNASSIGNED;
     }
 
-    public String getName() {
+    public HouseName getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(HouseName name) {
         this.name = name;
     }
 

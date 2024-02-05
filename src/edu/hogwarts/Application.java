@@ -37,19 +37,19 @@ public class Application {
         var ravenclaw = new House();
         var slytherin = new House();
 
-        gryffindor.setName("Gryffindor");
+        gryffindor.setName(HouseName.GRYFFINDOR);
         gryffindor.setFounder("Godric Gryffindor");
         gryffindor.setColors(new String[]{"scarlet", "gold"});
 
-        hufflepuff.setName("Hufflepuff");
+        hufflepuff.setName(HouseName.HUFFLEPUFF);
         hufflepuff.setFounder("Helga Hufflepuff");
         hufflepuff.setColors(new String[]{"yellow", "black"});
 
-        ravenclaw.setName("Ravenclaw");
+        ravenclaw.setName(HouseName.RAVENCLAW);
         ravenclaw.setFounder("Rowena Ravenclaw");
         ravenclaw.setColors(new String[]{"blue", "silver"});
 
-        slytherin.setName("Slytherin");
+        slytherin.setName(HouseName.SLYTHERIN);
         slytherin.setFounder("Salazar Slytherin");
         slytherin.setColors(new String[]{"green", "silver"});
 

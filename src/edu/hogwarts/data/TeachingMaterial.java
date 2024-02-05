@@ -1,4 +1,4 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.data;
 
 public abstract class TeachingMaterial {
     private String name;

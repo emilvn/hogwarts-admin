@@ -1,4 +1,4 @@
-package src.edu.hogwarts;
+package src.edu.generic;
 
 public class Student extends Person {
     private int enrollmentYear;

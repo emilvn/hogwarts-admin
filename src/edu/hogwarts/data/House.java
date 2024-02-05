@@ -1,4 +1,4 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.data;
 
 public class House {
     private HouseName name;

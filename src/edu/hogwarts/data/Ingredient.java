@@ -1,4 +1,4 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.data;
 
 public class Ingredient extends TeachingMaterial {
     private String name;

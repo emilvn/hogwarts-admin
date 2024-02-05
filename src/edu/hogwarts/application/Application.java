@@ -1,14 +1,18 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.application;
+
+import src.edu.generic.Student;
+import src.edu.hogwarts.data.*;
 
 import java.time.LocalDate;
 
 public class Application {
     private House[] houses;
-    private HogwartsStudent[] students;
-    private HogwartsTeacher[] teachers;
     private Subject[] subjects;
     private Course[] courses;
     private TeachingMaterial[] materials;
+
+    private StudentController studentController;
+    private TeacherController teacherController;
 
     public static void main(String[] args) {
         Application app = new Application();
@@ -16,6 +20,8 @@ public class Application {
     }
 
     public void initApp() {
+        studentController = new StudentController();
+        teacherController = new TeacherController();
         initHouses();
         initStudents();
         initTeachers();
@@ -107,7 +113,8 @@ public class Application {
         draco.setHouse(houses[3]);
         draco.setTeams("Quidditch", "Wizard Chess", "Duelling Club");
 
-        students = new HogwartsStudent[]{harry, ron, hermione, neville, luna, draco};
+        var students = new HogwartsStudent[]{harry, ron, hermione, neville, luna, draco};
+        studentController.add(students);
     }
 
     public void initTeachers() {
@@ -128,7 +135,8 @@ public class Application {
         slughorn.setEmploymentStart(LocalDate.of(1931, 9, 1));
         slughorn.setEmploymentEnd(LocalDate.of(1981, 6, 30));
 
-        teachers = new HogwartsTeacher[]{snape, slughorn};
+        var teachers = new HogwartsTeacher[]{snape, slughorn};
+        teacherController.add(teachers);
     }
 
     public void initSubjects() {
@@ -187,8 +195,8 @@ public class Application {
     public void initCourses() {
         var potions = new Course();
         potions.setSubject(subjects[0]);
-        potions.setTeacher(teachers[1]);
-        potions.setStudents(students);
+        potions.setTeacher(teacherController.getTeachers()[1]);
+        potions.setStudents(studentController.getStudents());
         potions.setMaterials(materials);
 
         courses = new Course[]{potions};
@@ -202,13 +210,13 @@ public class Application {
     }
 
     public void printStudents() {
-        for (Student student : students) {
+        for (Student student : studentController.getStudents()) {
             System.out.println(student);
         }
     }
 
     public void printTeachers() {
-        for (HogwartsTeacher teacher : teachers) {
+        for (HogwartsTeacher teacher : teacherController.getTeachers()) {
             System.out.println(teacher);
         }
     }

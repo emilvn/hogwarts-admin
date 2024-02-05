@@ -1,4 +1,7 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.data;
+
+import src.edu.generic.Student;
+import src.edu.generic.Teacher;
 
 public class Course {
     private Subject subject;

@@ -1,4 +1,6 @@
-package src.edu.hogwarts;
+package src.edu.hogwarts.data;
+
+import src.edu.generic.Teacher;
 
 import java.time.LocalDate;
 

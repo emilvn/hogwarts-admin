@@ -1,4 +1,4 @@
-package src.edu.hogwarts;
+package src.edu.generic;
 
 public class Person {
     private String firstName;

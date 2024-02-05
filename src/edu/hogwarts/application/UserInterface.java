@@ -13,9 +13,7 @@ public class UserInterface {
     private final TeacherController teacherController;
     private final CourseController courseController;
     private final Scanner s = new Scanner(System.in);
-
-    private final int COLUMN_WIDTH = 15;
-    private String horizontalLine = "=======================================================================================================================";
+    private final String horizontalLine = "=======================================================================================================================";
 
     public UserInterface(StudentController studentController, TeacherController teacherController, CourseController courseController) {
         this.studentController = studentController;
@@ -110,19 +108,22 @@ public class UserInterface {
         System.out.println("Welcome to Hogwarts School of Witchcraft and Wizardry");
     }
     public void printMenu() {
+        System.out.println(horizontalLine);
         System.out.println("Please select an option:");
         System.out.println("1. Add student");
         System.out.println("2. Add teacher");
         System.out.println("3. Print table");
         System.out.println("0. Exit");
+        System.out.println(horizontalLine);
     }
 
     private String forceLength(String s) {
         if (s == null){
             s = "-";
         }
+        int COLUMN_WIDTH = 15;
         if (s.length() > COLUMN_WIDTH) {
-            return s.substring(0, COLUMN_WIDTH-3) + "...";
+            return s.substring(0, COLUMN_WIDTH -3) + "...";
         }
         else{
             while(s.length() < COLUMN_WIDTH){

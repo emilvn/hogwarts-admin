@@ -7,13 +7,12 @@ import java.time.LocalDate;
 public class InitApp {
     private final StudentController studentController = new StudentController();
     private final TeacherController teacherController = new TeacherController();
-    private final CourseController courseController = new CourseController();
 
     public void initApp() {
         initStudents();
         initStaff();
 
-        var ui = new UserInterface(studentController, teacherController, courseController);
+        var ui = new UserInterface(studentController, teacherController);
         ui.start();
 
     }

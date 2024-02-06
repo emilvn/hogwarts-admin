@@ -81,7 +81,8 @@ public class Person {
     }
 
     public int getAge() {
-        return Period.between(birthDate, LocalDate.now()).getYears();
+        var hogwartsNow = LocalDate.now().withYear(1992);
+        return Period.between(birthDate, hogwartsNow).getYears();
     }
 
     public boolean hasMiddleName() {

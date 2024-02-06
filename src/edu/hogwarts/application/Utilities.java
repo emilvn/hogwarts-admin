@@ -30,7 +30,7 @@ public class Utilities {
         }
     }
 
-    public static List<HogwartsPerson> filterBy(List<HogwartsPerson> list, FilterByOptions option){
+    public static List<HogwartsPerson> filterBy(List<HogwartsPerson> list, FilterByOption option){
         if(option instanceof EmpType)
             return filterByRole(list, (EmpType) option);
         else if(option instanceof HouseNames)

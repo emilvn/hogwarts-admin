@@ -4,8 +4,9 @@ import src.edu.hogwarts.data.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;;
+import java.util.Scanner;
 
+import static src.edu.hogwarts.application.Utilities.forceLength;
 public class UserInterface {
     private final StudentController studentController;
     private final TeacherController teacherController;
@@ -188,10 +189,10 @@ public class UserInterface {
 
         for(int i = 0; i<columnNames.length; i++){
             if(i == columnNames.length-1){
-                System.out.print("| " + Utilities.forceLength(columnNames[i]) + " |");
+                System.out.print("| " + forceLength(columnNames[i]) + " |");
             }
             else{
-                System.out.print("| " + Utilities.forceLength(columnNames[i]) + " |" + "\t");
+                System.out.print("| " + forceLength(columnNames[i]) + " |" + "\t");
             }
         }
 
@@ -201,17 +202,17 @@ public class UserInterface {
         assert people != null;
         for (HogwartsPerson person : people) {
             String role = person instanceof HogwartsTeacher ? "Teacher" : "Student";
-            System.out.print("| "+Utilities.forceLength(person.getFirstName()) + " |");
+            System.out.print("| "+ forceLength(person.getFirstName()) + " |");
             System.out.print("\t");
-            System.out.print("| " + Utilities.forceLength(person.getMiddleName()) + " |");
+            System.out.print("| " + forceLength(person.getMiddleName()) + " |");
             System.out.print("\t");
-            System.out.print("| " + Utilities.forceLength(person.getLastName())+ " |");
+            System.out.print("| " + forceLength(person.getLastName())+ " |");
             System.out.print("\t");
-            System.out.print("| " + Utilities.forceLength(Integer.toString(person.getAge())) + " |");
+            System.out.print("| " + forceLength(Integer.toString(person.getAge())) + " |");
             System.out.print("\t");
-            System.out.print("| " + Utilities.forceLength(person.getHouse().getName().toString()) + " |");
+            System.out.print("| " + forceLength(person.getHouse().getName().toString()) + " |");
             System.out.print("\t");
-            System.out.print("| " + Utilities.forceLength(role) + " |");
+            System.out.print("| " + forceLength(role) + " |");
             System.out.print("\n");
         }
         System.out.println(horizontalLine);

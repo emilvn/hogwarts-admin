@@ -88,6 +88,9 @@ public class Person {
         return middleName != null;
     }
 
+    public boolean hasLastName(){
+        return lastName != null;
+    }
 
     @Override
     public String toString() {

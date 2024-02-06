@@ -2,6 +2,7 @@ package src.edu.hogwarts.application;
 
 import src.edu.generic.Controller;
 import src.edu.hogwarts.data.HogwartsStudent;
+import src.edu.hogwarts.data.SortOption;
 
 import java.util.ArrayList;
 import java.util.Collections;

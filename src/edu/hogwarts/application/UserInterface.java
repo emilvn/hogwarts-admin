@@ -3,8 +3,10 @@ package src.edu.hogwarts.application;
 import src.edu.hogwarts.data.HogwartsPerson;
 import src.edu.hogwarts.data.HogwartsTeacher;
 import src.edu.hogwarts.data.House;
+import src.edu.hogwarts.data.SortOption;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,7 +36,8 @@ public class UserInterface {
                     //addTeacher();
                     break;
                 case 3:
-                    printTable();
+                    printTable(SortOption.FIRST_NAME);
+                    printSortOptions();
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -44,9 +47,11 @@ public class UserInterface {
         }
     }
 
-    private void printTable() {
-        List<HogwartsPerson> people = new ArrayList<>(teacherController.getAll());
+    private void printTable(SortOption option) {
+        ArrayList<HogwartsPerson> people = new ArrayList<>(teacherController.getAll());
         people.addAll(studentController.getAll());
+
+        Utilities.sortBy(people, option);
 
         String[] columnNames = {"FIRST NAME", "MIDDLE NAME", "LAST NAME", "AGE", "HOUSE", "ROLE"};
         System.out.println(horizontalLine);
@@ -115,6 +120,45 @@ public class UserInterface {
         System.out.println("3. Print table");
         System.out.println("0. Exit");
         System.out.println(horizontalLine);
+    }
+
+    public void printSortOptions(){
+        System.out.println("Sort by:");
+        System.out.println("1. First name");
+        System.out.println("2. Middle name");
+        System.out.println("3. Last name");
+        System.out.println("4. Age");
+        System.out.println("5. House");
+        System.out.println("6. Role");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        while(choice != 0){
+            switch (choice) {
+                case 1:
+                    printTable(SortOption.FIRST_NAME);
+                    break;
+                case 2:
+                    printTable(SortOption.MIDDLE_NAME);
+                    break;
+                case 3:
+                    printTable(SortOption.LAST_NAME);
+                    break;
+                case 4:
+                    printTable(SortOption.AGE);
+                    break;
+                case 5:
+                    printTable(SortOption.HOUSE);
+                    break;
+                case 6:
+                    printTable(SortOption.ROLE);
+                    break;
+                default:
+                    System.out.println("Invalid option");
+            }
+            printSortOptions();
+            choice = s.nextInt();
+        }
+        start();
     }
 
     private String forceLength(String s) {

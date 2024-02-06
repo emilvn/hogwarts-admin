@@ -12,6 +12,7 @@ public interface HogwartsPerson {
     void setMiddleName(String middleName);
     String getLastName();
     void setLastName(String lastName);
+    EmpType getRole();
     boolean hasMiddleName();
     boolean hasLastName();
 }

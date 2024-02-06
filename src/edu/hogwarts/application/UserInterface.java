@@ -1,12 +1,8 @@
 package src.edu.hogwarts.application;
 
-import src.edu.hogwarts.data.HogwartsPerson;
-import src.edu.hogwarts.data.HogwartsTeacher;
-import src.edu.hogwarts.data.House;
-import src.edu.hogwarts.data.SortOption;
+import src.edu.hogwarts.data.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,8 +32,8 @@ public class UserInterface {
                     //addTeacher();
                     break;
                 case 3:
-                    printTable(SortOption.FIRST_NAME, false);
-                    printSortOptions();
+                    printTable(SortOption.FIRST_NAME, false, null);
+                    selectFilterOrSort();
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -47,13 +43,94 @@ public class UserInterface {
         }
     }
 
-    private void printTable(SortOption option, boolean descending) {
+    private void selectFilterOrSort(){
+        System.out.println("1. Sort");
+        System.out.println("2. Filter");
+        System.out.println("0. Back");
+        switch (s.nextInt()){
+            case 1:
+                printSortOptions();
+                break;
+            case 2:
+                printFilterOptions();
+                break;
+            default:
+                System.out.println("Invalid option");
+        }
+    }
+
+    private void printFilterOptions(){
+        System.out.println("Filter by:");
+        System.out.println("1. Role");
+        System.out.println("2. House");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        while(choice != 0){
+            switch (choice) {
+                case 1:
+                    printFilterByRole();
+                    break;
+                case 2:
+                    printFilterByHouse();
+                    break;
+                default:
+                    System.out.println("Invalid option");
+            }
+            printFilterOptions();
+            choice = s.nextInt();
+        }
+        start();
+    }
+
+    private void printFilterByHouse() {
+        System.out.println("Select house:");
+        System.out.println("1. Gryffindor");
+        System.out.println("2. Hufflepuff");
+        System.out.println("3. Ravenclaw");
+        System.out.println("4. Slytherin");
+        System.out.println("5. Unknown");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        while(choice != 0){
+            switch (choice) {
+                case 1:
+                    printTable(SortOption.FIRST_NAME, false, HouseNames.GRYFFINDOR);
+                    break;
+                case 2:
+                    printTable(SortOption.FIRST_NAME, false, HouseNames.HUFFLEPUFF);
+                    break;
+                case 3:
+                    printTable(SortOption.FIRST_NAME, false, HouseNames.RAVENCLAW);
+                    break;
+                case 4:
+                    printTable(SortOption.FIRST_NAME, false, HouseNames.SLYTHERIN);
+                    break;
+                case 5:
+                    printTable(SortOption.FIRST_NAME, false, HouseNames.UNKNOWN);
+                    break;
+                default:
+                    System.out.println("Invalid option");
+            }
+            selectFilterOrSort();
+            choice = s.nextInt();
+        }
+
+    }
+
+    private void printFilterByRole() {
+
+    }
+
+    private void printTable(SortOption option, boolean descending, FilterByOptions filterByOption) {
         List<HogwartsPerson> people = new ArrayList<>(teacherController.getAll());
         people.addAll(studentController.getAll());
 
         Utilities.sortBy(people, option);
         if(descending){
             people = people.reversed();
+        }
+        if(filterByOption != null){
+            people = Utilities.filterBy(people, filterByOption);
         }
 
         String[] columnNames = {"FIRST NAME", "MIDDLE NAME", "LAST NAME", "AGE", "HOUSE", "ROLE"};
@@ -71,6 +148,7 @@ public class UserInterface {
         System.out.print("\n");
         System.out.println(horizontalLine);
 
+        assert people != null;
         for (HogwartsPerson person : people) {
             String role = person instanceof HogwartsTeacher ? "Teacher" : "Student";
             System.out.print("| "+forceLength(person.getFirstName()) + " |");
@@ -81,7 +159,7 @@ public class UserInterface {
             System.out.print("\t");
             System.out.print("| " + forceLength(Integer.toString(person.getAge())) + " |");
             System.out.print("\t");
-            System.out.print("| " + forceLength(person.getHouse().getName()) + " |");
+            System.out.print("| " + forceLength(person.getHouse().getName().toString()) + " |");
             System.out.print("\t");
             System.out.print("| " + forceLength(role) + " |");
             System.out.print("\n");
@@ -138,27 +216,27 @@ public class UserInterface {
         while(choice != 0){
             switch (choice) {
                 case 1:
-                    printTable(SortOption.FIRST_NAME, selectOrder());
+                    printTable(SortOption.FIRST_NAME, selectOrder(), null);
                     break;
                 case 2:
-                    printTable(SortOption.MIDDLE_NAME, selectOrder());
+                    printTable(SortOption.MIDDLE_NAME, selectOrder(), null);
                     break;
                 case 3:
-                    printTable(SortOption.LAST_NAME, selectOrder());
+                    printTable(SortOption.LAST_NAME, selectOrder(), null);
                     break;
                 case 4:
-                    printTable(SortOption.AGE, selectOrder());
+                    printTable(SortOption.AGE, selectOrder(), null);
                     break;
                 case 5:
-                    printTable(SortOption.HOUSE, selectOrder());
+                    printTable(SortOption.HOUSE, selectOrder(), null);
                     break;
                 case 6:
-                    printTable(SortOption.ROLE, selectOrder());
+                    printTable(SortOption.ROLE, selectOrder(), null);
                     break;
                 default:
                     System.out.println("Invalid option");
             }
-            printSortOptions();
+            selectFilterOrSort();
             choice = s.nextInt();
         }
         start();

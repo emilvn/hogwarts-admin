@@ -1,8 +1,6 @@
 package src.edu.hogwarts.application;
 
-import src.edu.hogwarts.data.HogwartsPerson;
-import src.edu.hogwarts.data.HogwartsTeacher;
-import src.edu.hogwarts.data.SortOption;
+import src.edu.hogwarts.data.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,4 +29,33 @@ public class Utilities {
                 break;
         }
     }
+
+    public static List<HogwartsPerson> filterBy(List<HogwartsPerson> list, FilterByOptions option){
+        if(option instanceof EmpType)
+            return filterByRole(list, (EmpType) option);
+        else if(option instanceof HouseNames)
+            return filterByHouse(list, (HouseNames) option);
+        return null;
+    }
+
+    private static List<HogwartsPerson> filterByRole(List<HogwartsPerson> list, EmpType role){
+        List<HogwartsPerson> people = new ArrayList<>();
+        for (HogwartsPerson person : list) {
+            if(person.getRole().equals(role)){
+                people.add(person);
+            }
+        }
+        return people;
+    }
+
+    private static List<HogwartsPerson> filterByHouse(List<HogwartsPerson> list, HouseNames house){
+        List<HogwartsPerson> filtered = new ArrayList<>();
+        for (HogwartsPerson person : list) {
+            if(person.getHouse().getName().equals(house)){
+                filtered.add(person);
+            }
+        }
+        return filtered;
+    }
+
 }

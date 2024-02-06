@@ -8,6 +8,7 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
     private House house;
     private boolean prefect;
     private String[] teams;
+    private final EmpType role = EmpType.STUDENT;
 
     public HogwartsStudent(House house, boolean prefect, String[] teams, int enrollmentYear, int graduationYear, boolean graduated, String fullName, LocalDate birthDate) {
         super(enrollmentYear, graduationYear, graduated, fullName, birthDate);
@@ -44,6 +45,10 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
 
     public void setTeams(String... teams) {
         this.teams = teams;
+    }
+
+    public EmpType getRole() {
+        return role;
     }
 
     @Override

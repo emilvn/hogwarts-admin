@@ -5,30 +5,24 @@ import src.edu.hogwarts.data.EmpType;
 import java.time.LocalDate;
 
 public class Teacher extends Person {
-    private EmpType employment;
+    private final EmpType role = EmpType.TEACHER;
     private LocalDate employmentStart;
     private LocalDate employmentEnd;
 
-    public Teacher(EmpType employment, LocalDate employmentStart, LocalDate employmentEnd, String fullName, LocalDate birthDate) {
+    public Teacher(LocalDate employmentStart, LocalDate employmentEnd, String fullName, LocalDate birthDate) {
         super(fullName, birthDate);
-        this.employment = employment;
         this.employmentStart = employmentStart;
         this.employmentEnd = employmentEnd;
     }
 
     public Teacher() {
         super();
-        this.employment = EmpType.TEACHER;
         this.employmentStart = LocalDate.now();
         this.employmentEnd = LocalDate.now().plusYears(1);
     }
 
-    public EmpType getEmployment() {
-        return employment;
-    }
-
-    public void setEmployment(EmpType employment) {
-        this.employment = employment;
+    public EmpType getRole() {
+        return role;
     }
 
     public LocalDate getEmploymentStart() {
@@ -51,7 +45,7 @@ public class Teacher extends Person {
     public String toString() {
         return "Teacher{\n" +
                 "fullName: " + getFullName() + "\n" +
-                "employment: " + employment + "\n" +
+                "employment: " + role + "\n" +
                 "employmentStart: " + employmentStart + "\n" +
                 "employmentEnd: " + employmentEnd + "\n" +
                 "}";

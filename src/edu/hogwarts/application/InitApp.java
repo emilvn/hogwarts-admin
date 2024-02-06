@@ -58,11 +58,11 @@ public class InitApp {
 
     public void initStaff() {
         // headmaster and heads of houses
-        var dumbledore = new HogwartsTeacher(House.getGryffindor(), false, EmpType.STAFF, LocalDate.of(1910, 1, 1), LocalDate.of(1997, 6, 30), "Albus Percival Wulfric Brian Dumbledore", LocalDate.of(1881, 7, 1));
-        var mcGonagall = new HogwartsTeacher(House.getGryffindor(), true, EmpType.TEACHER, LocalDate.of(1935, 1, 1), LocalDate.now(), "Minerva McGonagall", LocalDate.of(1925, 10, 4));
-        var sprout = new HogwartsTeacher(House.getHufflepuff(), true, EmpType.TEACHER, LocalDate.of(1935, 1, 1), LocalDate.now(), "Pomona Sprout", LocalDate.of(1925, 5, 15));
-        var flitwick = new HogwartsTeacher(House.getRavenclaw(), true, EmpType.TEACHER, LocalDate.of(1935, 1, 1), LocalDate.now(), "Filius Flitwick", LocalDate.of(1925, 10, 17));
-        var snape = new HogwartsTeacher(House.getSlytherin(), true, EmpType.TEACHER, LocalDate.of(1970, 1, 1), LocalDate.of(1998, 5, 2), "Severus Snape", LocalDate.of(1960, 1, 9));
+        var dumbledore = new HogwartsTeacher(House.getGryffindor(), false, LocalDate.of(1910, 1, 1), LocalDate.of(1997, 6, 30), "Albus Percival Wulfric Brian Dumbledore", LocalDate.of(1881, 7, 1));
+        var mcGonagall = new HogwartsTeacher(House.getGryffindor(), true, LocalDate.of(1935, 1, 1), LocalDate.now(), "Minerva McGonagall", LocalDate.of(1925, 10, 4));
+        var sprout = new HogwartsTeacher(House.getHufflepuff(), true, LocalDate.of(1935, 1, 1), LocalDate.now(), "Pomona Sprout", LocalDate.of(1925, 5, 15));
+        var flitwick = new HogwartsTeacher(House.getRavenclaw(), true, LocalDate.of(1935, 1, 1), LocalDate.now(), "Filius Flitwick", LocalDate.of(1925, 10, 17));
+        var snape = new HogwartsTeacher(House.getSlytherin(), true, LocalDate.of(1970, 1, 1), LocalDate.of(1998, 5, 2), "Severus Snape", LocalDate.of(1960, 1, 9));
 
         var staff = new HogwartsTeacher[]{dumbledore, mcGonagall, sprout, flitwick, snape};
         teacherController.add(staff);

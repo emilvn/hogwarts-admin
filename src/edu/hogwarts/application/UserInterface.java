@@ -36,7 +36,7 @@ public class UserInterface {
                     //addTeacher();
                     break;
                 case 3:
-                    printTable(SortOption.FIRST_NAME);
+                    printTable(SortOption.FIRST_NAME, false);
                     printSortOptions();
                     break;
                 default:
@@ -47,11 +47,14 @@ public class UserInterface {
         }
     }
 
-    private void printTable(SortOption option) {
-        ArrayList<HogwartsPerson> people = new ArrayList<>(teacherController.getAll());
+    private void printTable(SortOption option, boolean descending) {
+        List<HogwartsPerson> people = new ArrayList<>(teacherController.getAll());
         people.addAll(studentController.getAll());
 
         Utilities.sortBy(people, option);
+        if(descending){
+            people = people.reversed();
+        }
 
         String[] columnNames = {"FIRST NAME", "MIDDLE NAME", "LAST NAME", "AGE", "HOUSE", "ROLE"};
         System.out.println(horizontalLine);
@@ -135,22 +138,22 @@ public class UserInterface {
         while(choice != 0){
             switch (choice) {
                 case 1:
-                    printTable(SortOption.FIRST_NAME);
+                    printTable(SortOption.FIRST_NAME, selectOrder());
                     break;
                 case 2:
-                    printTable(SortOption.MIDDLE_NAME);
+                    printTable(SortOption.MIDDLE_NAME, selectOrder());
                     break;
                 case 3:
-                    printTable(SortOption.LAST_NAME);
+                    printTable(SortOption.LAST_NAME, selectOrder());
                     break;
                 case 4:
-                    printTable(SortOption.AGE);
+                    printTable(SortOption.AGE, selectOrder());
                     break;
                 case 5:
-                    printTable(SortOption.HOUSE);
+                    printTable(SortOption.HOUSE, selectOrder());
                     break;
                 case 6:
-                    printTable(SortOption.ROLE);
+                    printTable(SortOption.ROLE, selectOrder());
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -159,6 +162,11 @@ public class UserInterface {
             choice = s.nextInt();
         }
         start();
+    }
+
+    private boolean selectOrder(){
+        System.out.println("Ascending or descending? (1/2)");
+        return s.nextInt() == 2;
     }
 
     private String forceLength(String s) {

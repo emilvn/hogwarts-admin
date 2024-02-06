@@ -6,9 +6,10 @@ import src.edu.hogwarts.data.SortOption;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Utilities {
-    public static void sortBy(ArrayList<HogwartsPerson> list, SortOption option){
+    public static void sortBy(List<HogwartsPerson> list, SortOption option){
         switch (option){
             case FIRST_NAME:
                 list.sort(Comparator.comparing(HogwartsPerson::getFirstName));

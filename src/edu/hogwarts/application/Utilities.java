@@ -58,4 +58,20 @@ public class Utilities {
         return filtered;
     }
 
+    public static String forceLength(String s) {
+        if (s == null){
+            s = "-";
+        }
+        int COLUMN_WIDTH = 15;
+        if (s.length() > COLUMN_WIDTH) {
+            return s.substring(0, COLUMN_WIDTH -3) + "...";
+        }
+        else{
+            while(s.length() < COLUMN_WIDTH){
+                s = s.concat(" ");
+            }
+        }
+        return s;
+    }
+
 }

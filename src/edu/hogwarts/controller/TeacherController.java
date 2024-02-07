@@ -3,11 +3,11 @@ package src.edu.hogwarts.controller;
 import src.edu.hogwarts.model.HogwartsTeacher;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class TeacherController extends Controller<HogwartsTeacher> {
-    private final ArrayList<HogwartsTeacher> teachers = new ArrayList<>();
+    private final HashMap<UUID, HogwartsTeacher> teachers = new HashMap<>();
 
     public TeacherController() {
         super();
@@ -15,23 +15,27 @@ public class TeacherController extends Controller<HogwartsTeacher> {
 
     public TeacherController(HogwartsTeacher... teachers) {
         super();
-        Collections.addAll(this.teachers, teachers);
+        for(var teacher : teachers) {
+            this.teachers.put(teacher.getId(), teacher);
+        }
     }
 
     public ArrayList<HogwartsTeacher> getAll() {
-        return teachers;
+        return new ArrayList<>(this.teachers.values());
     }
 
     public HogwartsTeacher get(UUID id) {
-        return teachers.stream().filter(teacher -> teacher.getId().equals(id)).findFirst().orElse(null);
+        return teachers.get(id);
     }
 
     public void add(HogwartsTeacher teacher) {
-        teachers.add(teacher);
+        teachers.put(teacher.getId(), teacher);
     }
 
-    public void add(HogwartsTeacher[] teachers) {
-        Collections.addAll(this.teachers, teachers);
+    public void add(HogwartsTeacher... teachers) {
+        for(var teacher : teachers) {
+            add(teacher);
+        }
     }
 
     public void update(UUID id, HogwartsTeacher teacher) {
@@ -47,6 +51,6 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     }
 
     public void delete(UUID id) {
-        teachers.removeIf(teacher -> teacher.getId().equals(id));
+        teachers.remove(id);
     }
 }

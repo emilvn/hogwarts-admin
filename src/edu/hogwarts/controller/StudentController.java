@@ -3,11 +3,11 @@ package src.edu.hogwarts.controller;
 import src.edu.hogwarts.model.HogwartsStudent;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class StudentController extends Controller<HogwartsStudent> {
-    private final ArrayList<HogwartsStudent> students = new ArrayList<>();
+    private final HashMap<UUID, HogwartsStudent> students = new HashMap<>();
 
     public StudentController() {
         super();
@@ -15,23 +15,27 @@ public class StudentController extends Controller<HogwartsStudent> {
 
     public StudentController(HogwartsStudent... students) {
         super();
-        Collections.addAll(this.students, students);
+        for(var student : students) {
+            this.students.put(student.getId(), student);
+        }
     }
 
     public ArrayList<HogwartsStudent> getAll() {
-        return students;
+        return new ArrayList<>(this.students.values());
     }
 
     public HogwartsStudent get(UUID id) {
-        return students.stream().filter(student -> student.getId().equals(id)).findFirst().orElse(null);
+        return students.get(id);
     }
 
     public void add(HogwartsStudent student) {
-        students.add(student);
+        students.put(student.getId(), student);
     }
 
-    public void add(HogwartsStudent[] students) {
-        Collections.addAll(this.students, students);
+    public void add(HogwartsStudent... students) {
+        for(var student : students) {
+            add(student);
+        }
     }
 
     public void update(UUID id, HogwartsStudent student) {
@@ -49,6 +53,6 @@ public class StudentController extends Controller<HogwartsStudent> {
     }
 
     public void delete(UUID id) {
-        students.removeIf(student -> student.getId().equals(id));
+        students.remove(id);
     }
 }

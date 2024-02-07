@@ -23,6 +23,7 @@ public class UserInterface {
     private SortOption sortOption = SortOption.FIRST_NAME;
     private boolean descending = false;
     private FilterByOption filterByOption;
+    private MenuHandler menuHandler = new MenuHandler();
 
     public UserInterface(StudentController studentController, TeacherController teacherController) {
         this.studentController = studentController;
@@ -30,8 +31,7 @@ public class UserInterface {
     }
 
     public void start() {
-        welcome();
-        printMenu();
+        menuHandler.printMainMenu();
         var choice = s.nextInt();
         switch (choice) {
             case 1:
@@ -51,20 +51,6 @@ public class UserInterface {
                 System.out.println("Invalid option");
                 start();
         }
-    }
-
-    private void welcome() {
-        System.out.println("Welcome to Hogwarts School of Witchcraft and Wizardry");
-    }
-
-    private void printMenu() {
-        System.out.println(horizontalLine);
-        System.out.println("Please select an option:");
-        System.out.println("1. Students");
-        System.out.println("2. Teachers");
-        System.out.println("3. Print all");
-        System.out.println("0. Exit");
-        System.out.println(horizontalLine);
     }
 
     private void printTable(List<HogwartsPerson> people) {
@@ -116,10 +102,7 @@ public class UserInterface {
     }
 
     private void selectFilterOrSort() {
-        System.out.println("1. Sort");
-        System.out.println("2. Filter");
-        System.out.println("3. Reset");
-        System.out.println("0. Back");
+        menuHandler.printFilterOrSortMenu();
         switch (s.nextInt()) {
             case 1:
                 selectSortOptions();
@@ -145,10 +128,7 @@ public class UserInterface {
 
     // ============== FILTER =================
     private void selectFilterOptions() {
-        System.out.println("Filter by:");
-        System.out.println("1. Role");
-        System.out.println("2. House");
-        System.out.println("0. Back");
+        menuHandler.printFilterMenu();
         var choice = s.nextInt();
         switch (choice) {
             case 1:
@@ -170,14 +150,7 @@ public class UserInterface {
     }
 
     private void selectFilterHouse() {
-        System.out.println("Select house:");
-        System.out.println("1. Gryffindor");
-        System.out.println("2. Hufflepuff");
-        System.out.println("3. Ravenclaw");
-        System.out.println("4. Slytherin");
-        System.out.println("5. Unknown");
-        System.out.println("6. All");
-        System.out.println("0. Back");
+        menuHandler.printFilterHouseMenu();
         var choice = s.nextInt();
         switch (choice) {
             case 1:
@@ -217,11 +190,7 @@ public class UserInterface {
     }
 
     private void selectFilterRole() {
-        System.out.println("Select role:");
-        System.out.println("1. Teacher");
-        System.out.println("2. Student");
-        System.out.println("3. All");
-        System.out.println("0. Back");
+        menuHandler.printFilterRoleMenu();
         var choice = s.nextInt();
         switch (choice) {
             case 1:
@@ -251,14 +220,7 @@ public class UserInterface {
 
     // ============== SORT =================
     public void selectSortOptions() {
-        System.out.println("Sort by:");
-        System.out.println("1. First name");
-        System.out.println("2. Middle name");
-        System.out.println("3. Last name");
-        System.out.println("4. Age");
-        System.out.println("5. House");
-        System.out.println("6. Role");
-        System.out.println("0. Back");
+        menuHandler.printSortMenu();
         var choice = s.nextInt();
         switch (choice) {
             case 1:
@@ -308,20 +270,13 @@ public class UserInterface {
     }
 
     private void selectSortOrder() {
-        System.out.println("Select order:");
-        System.out.println("1. Ascending");
-        System.out.println("2. Descending");
+        menuHandler.printSortOrderMenu();
         descending = s.nextInt() == 2;
     }
 
     // ============== STUDENT =================
     private void selectStudentOptions() {
-        System.out.println(horizontalLine);
-        System.out.println("Please select an option:");
-        System.out.println("1. Add student");
-        System.out.println("2. Print students");
-        System.out.println("0. Back");
-        System.out.println(horizontalLine);
+        menuHandler.printStudentsMenu();
         switch (s.nextInt()) {
             case 1:
                 addStudent();
@@ -382,12 +337,7 @@ public class UserInterface {
 
     // ============== TEACHER =================
     private void selectTeacherOptions() {
-        System.out.println(horizontalLine);
-        System.out.println("Please select an option:");
-        System.out.println("1. Add teacher");
-        System.out.println("2. Print teachers");
-        System.out.println("0. Back");
-        System.out.println(horizontalLine);
+        menuHandler.printTeachersMenu();
         switch (s.nextInt()) {
             case 1:
                 addTeacher();
@@ -454,12 +404,7 @@ public class UserInterface {
     }
 
     private House selectHouse() {
-        System.out.println("Enter house:");
-        System.out.println("1. Gryffindor");
-        System.out.println("2. Hufflepuff");
-        System.out.println("3. Ravenclaw");
-        System.out.println("4. Slytherin");
-        System.out.println("0. Unknown");
+        menuHandler.printHouseMenu();
         return switch (s.nextInt()) {
             case 1 -> House.getGryffindor();
             case 2 -> House.getHufflepuff();

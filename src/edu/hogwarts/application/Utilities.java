@@ -7,8 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Utilities {
-    public static void sortBy(List<HogwartsPerson> list, SortOption option){
-        switch (option){
+    public static void sortBy(List<HogwartsPerson> list, SortOption option) {
+        switch (option) {
             case FIRST_NAME:
                 list.sort(Comparator.comparing(HogwartsPerson::getFirstName));
                 break;
@@ -30,28 +30,28 @@ public class Utilities {
         }
     }
 
-    public static List<HogwartsPerson> filterBy(List<HogwartsPerson> list, FilterByOption option){
-        if(option instanceof EmpType)
+    public static List<HogwartsPerson> filterBy(List<HogwartsPerson> list, FilterByOption option) {
+        if (option instanceof EmpType)
             return filterByRole(list, (EmpType) option);
-        else if(option instanceof HouseNames)
+        else if (option instanceof HouseNames)
             return filterByHouse(list, (HouseNames) option);
         return null;
     }
 
-    private static List<HogwartsPerson> filterByRole(List<HogwartsPerson> list, EmpType role){
+    private static List<HogwartsPerson> filterByRole(List<HogwartsPerson> list, EmpType role) {
         List<HogwartsPerson> people = new ArrayList<>();
         for (HogwartsPerson person : list) {
-            if(person.getRole().equals(role)){
+            if (person.getRole().equals(role)) {
                 people.add(person);
             }
         }
         return people;
     }
 
-    private static List<HogwartsPerson> filterByHouse(List<HogwartsPerson> list, HouseNames house){
+    private static List<HogwartsPerson> filterByHouse(List<HogwartsPerson> list, HouseNames house) {
         List<HogwartsPerson> filtered = new ArrayList<>();
         for (HogwartsPerson person : list) {
-            if(person.getHouse().getName().equals(house)){
+            if (person.getHouse().getName().equals(house)) {
                 filtered.add(person);
             }
         }
@@ -59,15 +59,14 @@ public class Utilities {
     }
 
     public static String forceLength(String s) {
-        if (s == null){
+        if (s == null) {
             s = "-";
         }
         int COLUMN_WIDTH = 15;
         if (s.length() > COLUMN_WIDTH) {
-            return s.substring(0, COLUMN_WIDTH -3) + "...";
-        }
-        else{
-            while(s.length() < COLUMN_WIDTH){
+            return s.substring(0, COLUMN_WIDTH - 3) + "...";
+        } else {
+            while (s.length() < COLUMN_WIDTH) {
                 s = s.concat(" ");
             }
         }

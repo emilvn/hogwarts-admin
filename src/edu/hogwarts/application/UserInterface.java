@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static src.edu.hogwarts.application.Utilities.forceLength;
+
 public class UserInterface {
     private final StudentController studentController;
     private final TeacherController teacherController;
@@ -62,21 +63,20 @@ public class UserInterface {
 
     private void printTable(List<HogwartsPerson> people) {
         Utilities.sortBy(people, sortOption);
-        if(descending){
+        if (descending) {
             people = people.reversed();
         }
-        if(filterByOption != null){
+        if (filterByOption != null) {
             people = Utilities.filterBy(people, filterByOption);
         }
 
         String[] columnNames = {"FIRST NAME", "MIDDLE NAME", "LAST NAME", "AGE", "HOUSE", "ROLE"};
         System.out.println(horizontalLine);
 
-        for(int i = 0; i<columnNames.length; i++){
-            if(i == columnNames.length-1){
+        for (int i = 0; i < columnNames.length; i++) {
+            if (i == columnNames.length - 1) {
                 System.out.print("| " + forceLength(columnNames[i]) + " |");
-            }
-            else{
+            } else {
                 System.out.print("| " + forceLength(columnNames[i]) + " |" + "\t");
             }
         }
@@ -87,11 +87,11 @@ public class UserInterface {
         assert people != null;
         for (HogwartsPerson person : people) {
             String role = person instanceof HogwartsTeacher ? "Teacher" : "Student";
-            System.out.print("| "+ forceLength(person.getFirstName()) + " |");
+            System.out.print("| " + forceLength(person.getFirstName()) + " |");
             System.out.print("\t");
             System.out.print("| " + forceLength(person.getMiddleName()) + " |");
             System.out.print("\t");
-            System.out.print("| " + forceLength(person.getLastName())+ " |");
+            System.out.print("| " + forceLength(person.getLastName()) + " |");
             System.out.print("\t");
             System.out.print("| " + forceLength(Integer.toString(person.getAge())) + " |");
             System.out.print("\t");
@@ -103,18 +103,18 @@ public class UserInterface {
         System.out.println(horizontalLine);
     }
 
-    private void printAll(){
+    private void printAll() {
         List<HogwartsPerson> people = new ArrayList<>(studentController.getAll());
         people.addAll(teacherController.getAll());
         printTable(people);
     }
 
-    private void selectFilterOrSort(){
+    private void selectFilterOrSort() {
         System.out.println("1. Sort");
         System.out.println("2. Filter");
         System.out.println("3. Reset");
         System.out.println("0. Back");
-        switch (s.nextInt()){
+        switch (s.nextInt()) {
             case 1:
                 selectSortOptions();
                 break;
@@ -137,7 +137,7 @@ public class UserInterface {
     }
 
     // ============== FILTER =================
-    private void selectFilterOptions(){
+    private void selectFilterOptions() {
         System.out.println("Filter by:");
         System.out.println("1. Role");
         System.out.println("2. House");
@@ -204,7 +204,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
-        selectFilterOrSort();
+                selectFilterOrSort();
         }
 
     }
@@ -242,7 +242,7 @@ public class UserInterface {
 
 
     // ============== SORT =================
-    public void selectSortOptions(){
+    public void selectSortOptions() {
         System.out.println("Sort by:");
         System.out.println("1. First name");
         System.out.println("2. Middle name");
@@ -298,7 +298,7 @@ public class UserInterface {
         }
     }
 
-    private void selectSortOrder(){
+    private void selectSortOrder() {
         System.out.println("Select order:");
         System.out.println("1. Ascending");
         System.out.println("2. Descending");
@@ -329,10 +329,12 @@ public class UserInterface {
                 System.out.println("Invalid option");
         }
     }
-    private void printStudents(){
+
+    private void printStudents() {
         List<HogwartsPerson> students = new ArrayList<>(studentController.getAll());
         printTable(students);
     }
+
     private void addStudent() {
         System.out.println("Enter enrollment year (yyyy):");
         var enrollmentYear = s.nextInt();
@@ -369,7 +371,7 @@ public class UserInterface {
     }
 
     // ============== TEACHER =================
-    private void selectTeacherOptions(){
+    private void selectTeacherOptions() {
         System.out.println(horizontalLine);
         System.out.println("Please select an option:");
         System.out.println("1. Add teacher");
@@ -392,10 +394,12 @@ public class UserInterface {
                 System.out.println("Invalid option");
         }
     }
-    private void printTeachers(){
+
+    private void printTeachers() {
         List<HogwartsPerson> teachers = new ArrayList<>(teacherController.getAll());
         printTable(teachers);
     }
+
     private void addTeacher() {
         System.out.println("Enter year of employment start (yyyy):");
         var employmentStartYear = s.nextInt();
@@ -407,7 +411,7 @@ public class UserInterface {
 
         System.out.println("Enter year of (expected) employment end (yyyy):");
         var employmentEndYear = s.nextInt();
-        while(employmentEndYear < employmentStartYear){
+        while (employmentEndYear < employmentStartYear) {
             System.out.println("Invalid year. Enter year of (expected) employment end (yyyy):");
             employmentEndYear = s.nextInt();
         }
@@ -438,7 +442,7 @@ public class UserInterface {
         System.out.println("Teacher added");
     }
 
-    private House selectHouse(){
+    private House selectHouse() {
         System.out.println("Enter house:");
         System.out.println("1. Gryffindor");
         System.out.println("2. Hufflepuff");
@@ -453,10 +457,11 @@ public class UserInterface {
             default -> House.getUnknown();
         };
     }
-    private String[] selectTeams(){
+
+    private String[] selectTeams() {
         System.out.println("Enter amount of teams the student is a part of:");
         var teamCount = s.nextInt();
-        while(teamCount < 0 || teamCount > 5){
+        while (teamCount < 0 || teamCount > 5) {
             System.out.println("Invalid amount. Enter amount of teams the student is a part of:");
             teamCount = s.nextInt();
         }
@@ -467,7 +472,8 @@ public class UserInterface {
         }
         return teams;
     }
-    private String[] selectNameParts(){
+
+    private String[] selectNameParts() {
         System.out.println("Enter first name:");
         var firstName = s.next();
         System.out.println("Enter middle name:");
@@ -477,10 +483,10 @@ public class UserInterface {
         return new String[]{firstName, middleName, lastName};
     }
 
-    private LocalDate selectBirthDate(){
+    private LocalDate selectBirthDate() {
         System.out.println("Enter birth year (yyyy):");
         var birthYear = s.nextInt();
-        while(birthYear > 1992){
+        while (birthYear > 1992) {
             System.out.println("Invalid year. Enter birth year (yyyy) before 1992:");
             birthYear = s.nextInt();
         }
@@ -490,17 +496,19 @@ public class UserInterface {
         var birthDay = selectDay();
         return LocalDate.of(birthYear, birthMonth, birthDay);
     }
-    private int selectMonth(){
+
+    private int selectMonth() {
         var month = s.nextInt();
-        while(month < 1 || month > 12){
+        while (month < 1 || month > 12) {
             System.out.println("Invalid month. Enter month (1-12):");
             month = s.nextInt();
         }
         return month;
     }
-    private int selectDay(){
+
+    private int selectDay() {
         var day = s.nextInt();
-        while(day < 1 || day > 31){
+        while (day < 1 || day > 31) {
             System.out.println("Invalid day. Enter day:");
             day = s.nextInt();
         }

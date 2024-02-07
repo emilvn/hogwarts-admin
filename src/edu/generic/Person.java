@@ -76,6 +76,7 @@ public class Person {
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -89,7 +90,7 @@ public class Person {
         return middleName != null;
     }
 
-    public boolean hasLastName(){
+    public boolean hasLastName() {
         return lastName != null;
     }
 

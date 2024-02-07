@@ -41,6 +41,7 @@ public class House {
     public static House getSlytherin() {
         return slytherin;
     }
+
     public static House getUnknown() {
         return unknown;
     }

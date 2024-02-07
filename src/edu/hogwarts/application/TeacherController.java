@@ -10,34 +10,34 @@ import java.util.UUID;
 public class TeacherController extends Controller<HogwartsTeacher> {
     private final ArrayList<HogwartsTeacher> teachers = new ArrayList<>();
 
-    public TeacherController(){
+    public TeacherController() {
         super();
     }
 
-    public TeacherController(HogwartsTeacher... teachers){
+    public TeacherController(HogwartsTeacher... teachers) {
         super();
         Collections.addAll(this.teachers, teachers);
     }
 
-    public ArrayList<HogwartsTeacher> getAll(){
+    public ArrayList<HogwartsTeacher> getAll() {
         return teachers;
     }
 
-    public HogwartsTeacher get(UUID id){
+    public HogwartsTeacher get(UUID id) {
         return teachers.stream().filter(teacher -> teacher.getId().equals(id)).findFirst().orElse(null);
     }
 
-    public void add(HogwartsTeacher teacher){
+    public void add(HogwartsTeacher teacher) {
         teachers.add(teacher);
     }
 
-    public void add(HogwartsTeacher[] teachers){
+    public void add(HogwartsTeacher[] teachers) {
         Collections.addAll(this.teachers, teachers);
     }
 
-    public void update(UUID id, HogwartsTeacher teacher){
+    public void update(UUID id, HogwartsTeacher teacher) {
         var oldTeacher = get(id);
-        if(oldTeacher != null){
+        if (oldTeacher != null) {
             oldTeacher.setFullName(teacher.getFullName());
             oldTeacher.setBirthDate(teacher.getBirthDate());
             oldTeacher.setHouse(teacher.getHouse());
@@ -46,7 +46,8 @@ public class TeacherController extends Controller<HogwartsTeacher> {
             oldTeacher.setEmploymentEnd(teacher.getEmploymentEnd());
         }
     }
-    public void delete(UUID id){
+
+    public void delete(UUID id) {
         teachers.removeIf(teacher -> teacher.getId().equals(id));
     }
 }

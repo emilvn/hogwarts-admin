@@ -26,150 +26,37 @@ public class UserInterface {
         welcome();
         printMenu();
         var choice = s.nextInt();
-        while (choice != 0) {
-            switch (choice) {
-                case 1:
-                    addStudent();
-                    break;
-                case 2:
-                    //addTeacher();
-                    break;
-                case 3:
-                    printTable();
-                    selectFilterOrSort();
-                    break;
-                default:
-                    System.out.println("Invalid option");
-            }
-            printMenu();
-            choice = s.nextInt();
-        }
-    }
-
-    private void selectFilterOrSort(){
-        System.out.println("1. Sort");
-        System.out.println("2. Filter");
-        System.out.println("3. Reset");
-        System.out.println("0. Back");
-        switch (s.nextInt()){
-            case 1:
-                printSortOptions();
-                break;
-            case 2:
-                printFilterOptions();
-                break;
-            case 3:
-                sortOption = SortOption.FIRST_NAME;
-                descending = false;
-                filterByOption = null;
-                printTable();
-                break;
-            case 0:
-                start();
-                break;
-            default:
-                System.out.println("Invalid option");
-        }
-    }
-
-    private void printFilterOptions(){
-        System.out.println("Filter by:");
-        System.out.println("1. Role");
-        System.out.println("2. House");
-        System.out.println("0. Back");
-        var choice = s.nextInt();
         switch (choice) {
             case 1:
-                printFilterByRole();
-                printFilterOptions();
+                addStudent();
                 break;
             case 2:
-                printFilterByHouse();
-                printFilterOptions();
-                break;
-            case 0:
-                break;
-            default:
-                System.out.println("Invalid option");
-                printFilterOptions();
-        }
-
-    }
-
-    private void printFilterByHouse() {
-        System.out.println("Select house:");
-        System.out.println("1. Gryffindor");
-        System.out.println("2. Hufflepuff");
-        System.out.println("3. Ravenclaw");
-        System.out.println("4. Slytherin");
-        System.out.println("5. Unknown");
-        System.out.println("6. All");
-        System.out.println("0. Back");
-        var choice = s.nextInt();
-        switch (choice) {
-            case 1:
-                filterByOption = HouseNames.GRYFFINDOR;
-                printTable();
-                selectFilterOrSort();
-                break;
-            case 2:
-                filterByOption = HouseNames.HUFFLEPUFF;
-                printTable();
-                selectFilterOrSort();
+                //addTeacher();
                 break;
             case 3:
-                filterByOption = HouseNames.RAVENCLAW;
-                printTable();
-                selectFilterOrSort();
-                break;
-            case 4:
-                filterByOption = HouseNames.SLYTHERIN;
-                printTable();
-                selectFilterOrSort();
-                break;
-            case 5:
-                filterByOption = HouseNames.UNKNOWN;
                 printTable();
                 selectFilterOrSort();
                 break;
             case 0:
-                filterByOption = null;
+                System.exit(0);
                 break;
             default:
                 System.out.println("Invalid option");
-        selectFilterOrSort();
         }
-
     }
 
-    private void printFilterByRole() {
-        System.out.println("Select role:");
-        System.out.println("1. Teacher");
-        System.out.println("2. Student");
-        System.out.println("3. All");
-        System.out.println("0. Back");
-        var choice = s.nextInt();
-        switch (choice) {
-            case 1:
-                filterByOption = EmpType.TEACHER;
-                printTable();
-                break;
-            case 2:
-                filterByOption = EmpType.STUDENT;
-                printTable();
-                break;
-            case 3:
-                filterByOption = null;
-                printTable();
-                break;
-            case 0:
-                filterByOption = null;
-                break;
-            default:
-                System.out.println("Invalid option");
-        }
-        selectFilterOrSort();
+    private void welcome() {
+        System.out.println("Welcome to Hogwarts School of Witchcraft and Wizardry");
+    }
 
+    private void printMenu() {
+        System.out.println(horizontalLine);
+        System.out.println("Please select an option:");
+        System.out.println("1. Add student");
+        System.out.println("2. Add teacher");
+        System.out.println("3. Print table");
+        System.out.println("0. Exit");
+        System.out.println(horizontalLine);
     }
 
     private void printTable() {
@@ -218,21 +105,134 @@ public class UserInterface {
         System.out.println(horizontalLine);
     }
 
-    private void addStudent() {
-        //TODO: Implement this method
+    private void selectFilterOrSort(){
+        System.out.println("1. Sort");
+        System.out.println("2. Filter");
+        System.out.println("3. Reset");
+        System.out.println("0. Back");
+        switch (s.nextInt()){
+            case 1:
+                printSortOptions();
+                break;
+            case 2:
+                printFilterOptions();
+                break;
+            case 3:
+                sortOption = SortOption.FIRST_NAME;
+                descending = false;
+                filterByOption = null;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 0:
+                start();
+                break;
+            default:
+                System.out.println("Invalid option");
+        }
     }
 
-    public void welcome() {
-        System.out.println("Welcome to Hogwarts School of Witchcraft and Wizardry");
+    private void printFilterOptions(){
+        System.out.println("Filter by:");
+        System.out.println("1. Role");
+        System.out.println("2. House");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        switch (choice) {
+            case 1:
+                printFilterByRole();
+                printFilterOptions();
+                break;
+            case 2:
+                printFilterByHouse();
+                printFilterOptions();
+                break;
+            case 0:
+                selectFilterOrSort();
+                break;
+            default:
+                System.out.println("Invalid option");
+                printFilterOptions();
+        }
+
     }
-    public void printMenu() {
-        System.out.println(horizontalLine);
-        System.out.println("Please select an option:");
-        System.out.println("1. Add student");
-        System.out.println("2. Add teacher");
-        System.out.println("3. Print table");
-        System.out.println("0. Exit");
-        System.out.println(horizontalLine);
+
+    private void printFilterByHouse() {
+        System.out.println("Select house:");
+        System.out.println("1. Gryffindor");
+        System.out.println("2. Hufflepuff");
+        System.out.println("3. Ravenclaw");
+        System.out.println("4. Slytherin");
+        System.out.println("5. Unknown");
+        System.out.println("6. All");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        switch (choice) {
+            case 1:
+                filterByOption = HouseNames.GRYFFINDOR;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 2:
+                filterByOption = HouseNames.HUFFLEPUFF;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 3:
+                filterByOption = HouseNames.RAVENCLAW;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 4:
+                filterByOption = HouseNames.SLYTHERIN;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 5:
+                filterByOption = HouseNames.UNKNOWN;
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 0:
+                filterByOption = null;
+                printFilterOptions();
+                break;
+            default:
+                System.out.println("Invalid option");
+        selectFilterOrSort();
+        }
+
+    }
+
+    private void printFilterByRole() {
+        System.out.println("Select role:");
+        System.out.println("1. Teacher");
+        System.out.println("2. Student");
+        System.out.println("3. All");
+        System.out.println("0. Back");
+        var choice = s.nextInt();
+        switch (choice) {
+            case 1:
+                filterByOption = EmpType.TEACHER;
+                printTable();
+                break;
+            case 2:
+                filterByOption = EmpType.STUDENT;
+                printTable();
+                break;
+            case 3:
+                filterByOption = null;
+                printTable();
+                break;
+            case 0:
+                filterByOption = null;
+                printFilterOptions();
+                break;
+            default:
+                System.out.println("Invalid option");
+        }
+        selectFilterOrSort();
+
     }
 
     public void printSortOptions(){
@@ -245,45 +245,50 @@ public class UserInterface {
         System.out.println("6. Role");
         System.out.println("0. Back");
         var choice = s.nextInt();
-        while(choice != 0){
-            switch (choice) {
-                case 1:
-                    sortOption = SortOption.FIRST_NAME;
-                    selectOrder();
-                    printTable();
-                    break;
-                case 2:
-                    sortOption = SortOption.MIDDLE_NAME;
-                    selectOrder();
-                    printTable();
-                    break;
-                case 3:
-                    sortOption = SortOption.LAST_NAME;
-                    selectOrder();
-                    printTable();
-                    break;
-                case 4:
-                    sortOption = SortOption.AGE;
-                    selectOrder();
-                    printTable();
-                    break;
-                case 5:
-                    sortOption = SortOption.HOUSE;
-                    selectOrder();
-                    printTable();
-                    break;
-                case 6:
-                    sortOption = SortOption.ROLE;
-                    selectOrder();
-                    printTable();
-                    break;
-                default:
-                    System.out.println("Invalid option");
-            }
-            selectFilterOrSort();
-            choice = s.nextInt();
+        switch (choice) {
+            case 1:
+                sortOption = SortOption.FIRST_NAME;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 2:
+                sortOption = SortOption.MIDDLE_NAME;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 3:
+                sortOption = SortOption.LAST_NAME;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 4:
+                sortOption = SortOption.AGE;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 5:
+                sortOption = SortOption.HOUSE;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 6:
+                sortOption = SortOption.ROLE;
+                selectOrder();
+                printTable();
+                selectFilterOrSort();
+                break;
+            case 0:
+                sortOption = SortOption.FIRST_NAME;
+                selectFilterOrSort();
+                break;
+            default:
+                System.out.println("Invalid option");
         }
-        start();
     }
 
     private void selectOrder(){
@@ -292,4 +297,10 @@ public class UserInterface {
         System.out.println("2. Descending");
         descending = s.nextInt() == 2;
     }
+
+    private void addStudent() {
+        //TODO: Implement this method
+    }
+
+
 }

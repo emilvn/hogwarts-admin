@@ -15,6 +15,12 @@ public class Teacher extends Person {
         this.employmentEnd = employmentEnd;
     }
 
+    public Teacher(Person person) {
+        super(person);
+        this.employmentStart = LocalDate.now();
+        this.employmentEnd = LocalDate.now().plusYears(1);
+    }
+
     public Teacher() {
         super();
         this.employmentStart = LocalDate.now();

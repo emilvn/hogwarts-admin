@@ -12,14 +12,25 @@ public class Person {
     private final UUID id;
 
     public Person() {
-        this.id = UUID.randomUUID();
-        this.birthDate = LocalDate.now();
+        this("Unknown", "Unknown", "Unknown", LocalDate.now());
+    }
+
+    public Person(Person person) {
+        this(person.getFirstName(), person.getMiddleName(), person.getLastName(), person.getBirthDate());
     }
 
     public Person(String fullName, LocalDate birthDate) {
-        this();
         setFullName(fullName);
         this.birthDate = birthDate;
+        this.id = UUID.randomUUID();
+    }
+
+    public Person(String firstName, String middleName, String lastName, LocalDate birthDate) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.id = UUID.randomUUID();
     }
 
     public String getFirstName() {

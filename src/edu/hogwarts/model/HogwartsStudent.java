@@ -1,5 +1,6 @@
 package src.edu.hogwarts.model;
 
+import src.edu.generic.Person;
 import src.edu.generic.Student;
 
 import java.time.LocalDate;
@@ -15,6 +16,12 @@ public class HogwartsStudent extends Student implements HogwartsPerson {
         this.house = house;
         this.prefect = prefect;
         this.teams = teams;
+    }
+
+    public HogwartsStudent(Person person) {
+        super(person);
+        this.teams = new String[0];
+        this.house = new House();
     }
 
     public HogwartsStudent() {

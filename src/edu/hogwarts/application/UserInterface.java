@@ -18,16 +18,17 @@ public class UserInterface {
     private final StudentController studentController;
     private final TeacherController teacherController;
     private final Scanner s = new Scanner(System.in);
-    private final String horizontalLine = "=======================================================================================================================";
 
     private SortOption sortOption = SortOption.FIRST_NAME;
     private boolean descending = false;
     private FilterByOption filterByOption;
-    private MenuHandler menuHandler = new MenuHandler();
+    private final MenuHandler menuHandler = new MenuHandler();
+    private final InputHandler inputHandler;
 
     public UserInterface(StudentController studentController, TeacherController teacherController) {
         this.studentController = studentController;
         this.teacherController = teacherController;
+        this.inputHandler = new InputHandler(this.s);
     }
 
     public void start() {
@@ -54,6 +55,7 @@ public class UserInterface {
     }
 
     private void printTable(List<HogwartsPerson> people) {
+        var horizontalLine = "=======================================================================================================================";
         Utilities.sortBy(people, sortOption);
         if (descending) {
             people = people.reversed();
@@ -301,36 +303,31 @@ public class UserInterface {
     }
 
     private void addStudent() {
-        System.out.println("Enter enrollment year (yyyy):");
-        var enrollmentYear = s.nextInt();
+        var person = inputHandler.getPersonalDetails();
+
+        System.out.println("===== Enrollment year =====");
+        var enrollmentYear = inputHandler.getYearInput();
         var graduationYear = enrollmentYear + 7;
         var isGraduated = 1992 > graduationYear;
 
-        var nameParts = selectNameParts();
-        var firstName = nameParts[0];
-        var middleName = nameParts[1];
-        var lastName = nameParts[2];
+        System.out.println("===== House =====");
+        menuHandler.printHouseMenu();
+        var house = inputHandler.getHouseInput();
 
-        var house = selectHouse();
-
-        var birthDate = selectBirthDate();
-
+        System.out.println("===== Prefect status =====");
         System.out.println("Is the student a prefect? (y/n)");
-        var isPrefect = s.next().equalsIgnoreCase("y");
-        var teams = selectTeams();
+        var isPrefect = inputHandler.getYorNInput();
 
-        var student = new HogwartsStudent();
-        student.setFirstName(firstName);
-        student.setMiddleName(middleName);
-        student.setLastName(lastName);
-        student.setBirthDate(birthDate);
+        System.out.println("===== Teams =====");
+        var teams = inputHandler.getTeamsInput();
+
+        var student = new HogwartsStudent(person);
         student.setHouse(house);
         student.setPrefect(isPrefect);
         student.setTeams(teams);
         student.setEnrollmentYear(enrollmentYear);
         student.setGraduationYear(graduationYear);
         student.setGraduated(isGraduated);
-
         studentController.add(student);
         System.out.println("Student added");
     }
@@ -362,38 +359,27 @@ public class UserInterface {
     }
 
     private void addTeacher() {
-        System.out.println("Enter year of employment start (yyyy):");
-        var employmentStartYear = s.nextInt();
-        System.out.println("Enter month of employment start (1-12):");
-        var employmentStartMonth = selectMonth();
-        System.out.println("Enter day of employment start:");
-        var employmentStartDay = selectDay();
-        var employmentStart = LocalDate.of(employmentStartYear, employmentStartMonth, employmentStartDay);
+        var person = inputHandler.getPersonalDetails();
 
-        System.out.println("Enter year of (expected) employment end (yyyy):");
-        var employmentEndYear = s.nextInt();
-        while (employmentEndYear < employmentStartYear) {
+        System.out.println("===== Employment start =====");
+        var employmentStart = inputHandler.getDateInput();
+
+        System.out.println("===== Employment end (expected) =====");
+        var employmentEnd = inputHandler.getDateInput();
+        while (employmentEnd.getYear() < employmentStart.getYear()) {
             System.out.println("Invalid year. Enter year of (expected) employment end (yyyy):");
-            employmentEndYear = s.nextInt();
+            employmentEnd = inputHandler.getDateInput();
         }
-        var employmentEnd = LocalDate.of(employmentEndYear, 1, 1);
 
-        var nameParts = selectNameParts();
-        var firstName = nameParts[0];
-        var middleName = nameParts[1];
-        var lastName = nameParts[2];
+        System.out.println("===== House =====");
+        menuHandler.printHouseMenu();
+        var house = inputHandler.getHouseInput();
 
-        var house = selectHouse();
-        var birthDate = selectBirthDate();
-
+        System.out.println("===== Head of house status =====");
         System.out.println("Is the teacher the head of his/her house? (y/n)");
-        var isHeadOfHouse = s.next().equalsIgnoreCase("y");
+        var isHeadOfHouse = inputHandler.getYorNInput();
 
-        var teacher = new HogwartsTeacher();
-        teacher.setFirstName(firstName);
-        teacher.setMiddleName(middleName);
-        teacher.setLastName(lastName);
-        teacher.setBirthDate(birthDate);
+        var teacher = new HogwartsTeacher(person);
         teacher.setHouse(house);
         teacher.setHeadOfHouse(isHeadOfHouse);
         teacher.setEmploymentStart(employmentStart);
@@ -401,73 +387,5 @@ public class UserInterface {
 
         teacherController.add(teacher);
         System.out.println("Teacher added");
-    }
-
-    private House selectHouse() {
-        menuHandler.printHouseMenu();
-        return switch (s.nextInt()) {
-            case 1 -> House.getGryffindor();
-            case 2 -> House.getHufflepuff();
-            case 3 -> House.getRavenclaw();
-            case 4 -> House.getSlytherin();
-            default -> House.getUnknown();
-        };
-    }
-
-    private String[] selectTeams() {
-        System.out.println("Enter amount of teams the student is a part of:");
-        var teamCount = s.nextInt();
-        while (teamCount < 0 || teamCount > 5) {
-            System.out.println("Invalid amount. Enter amount of teams the student is a part of:");
-            teamCount = s.nextInt();
-        }
-        var teams = new String[teamCount];
-        for (int i = 0; i < teamCount; i++) {
-            System.out.println("Enter team " + (i + 1) + " name:");
-            teams[i] = s.next();
-        }
-        return teams;
-    }
-
-    private String[] selectNameParts() {
-        System.out.println("Enter first name:");
-        var firstName = s.next();
-        System.out.println("Enter middle name:");
-        var middleName = s.next();
-        System.out.println("Enter last name:");
-        var lastName = s.next();
-        return new String[]{firstName, middleName, lastName};
-    }
-
-    private LocalDate selectBirthDate() {
-        System.out.println("Enter birth year (yyyy):");
-        var birthYear = s.nextInt();
-        while (birthYear > 1992) {
-            System.out.println("Invalid year. Enter birth year (yyyy) before 1992:");
-            birthYear = s.nextInt();
-        }
-        System.out.println("Enter birth month (1-12):");
-        var birthMonth = selectMonth();
-        System.out.println("Enter birth day:");
-        var birthDay = selectDay();
-        return LocalDate.of(birthYear, birthMonth, birthDay);
-    }
-
-    private int selectMonth() {
-        var month = s.nextInt();
-        while (month < 1 || month > 12) {
-            System.out.println("Invalid month. Enter month (1-12):");
-            month = s.nextInt();
-        }
-        return month;
-    }
-
-    private int selectDay() {
-        var day = s.nextInt();
-        while (day < 1 || day > 31) {
-            System.out.println("Invalid day. Enter day:");
-            day = s.nextInt();
-        }
-        return day;
     }
 }

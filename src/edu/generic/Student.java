@@ -14,6 +14,10 @@ public class Student extends Person {
         this.graduated = graduated;
     }
 
+    public Student(Person person) {
+        super(person);
+    }
+
     public Student() {
         super();
     }

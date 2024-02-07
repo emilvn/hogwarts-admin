@@ -1,7 +1,5 @@
 package src.edu.hogwarts.model;
 
-import src.edu.hogwarts.enums.HouseNames;
-
 public class House {
     private final HouseNames name;
     private final String founder;

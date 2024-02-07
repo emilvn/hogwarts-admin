@@ -1,4 +1,6 @@
-package src.edu.hogwarts.enums;
+package src.edu.hogwarts.model;
+
+import src.edu.hogwarts.util.FilterByOption;
 
 public enum HouseNames implements FilterByOption {
     GRYFFINDOR,

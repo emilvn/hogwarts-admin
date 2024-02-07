@@ -1,4 +1,4 @@
-package src.edu.hogwarts.enums;
+package src.edu.hogwarts.util;
 
 public interface FilterByOption {
 }

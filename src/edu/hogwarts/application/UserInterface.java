@@ -2,11 +2,9 @@ package src.edu.hogwarts.application;
 
 import src.edu.hogwarts.controller.StudentController;
 import src.edu.hogwarts.controller.TeacherController;
-import src.edu.hogwarts.enums.*;
-import src.edu.hogwarts.model.HogwartsPerson;
-import src.edu.hogwarts.model.HogwartsStudent;
-import src.edu.hogwarts.model.HogwartsTeacher;
-import src.edu.hogwarts.model.House;
+import src.edu.hogwarts.model.*;
+import src.edu.hogwarts.util.FilterByOption;
+import src.edu.hogwarts.util.SortOption;
 import src.edu.hogwarts.util.Utilities;
 
 import java.time.LocalDate;

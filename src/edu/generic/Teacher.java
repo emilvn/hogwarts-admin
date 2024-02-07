@@ -1,6 +1,6 @@
 package src.edu.generic;
 
-import src.edu.hogwarts.enums.EmpType;
+import src.edu.hogwarts.model.EmpType;
 
 import java.time.LocalDate;
 

@@ -22,7 +22,7 @@ public class StudentController extends Controller<HogwartsStudent> {
         return students;
     }
     public void add(HogwartsStudent student){
-        //TODO: add( Student ) - der modtager et Student-objekt, gemmer det i en liste, og tildeler det et id.
+        students.add(student);
     }
     public void add(HogwartsStudent[] students){
         Collections.addAll(this.students, students);

@@ -19,20 +19,20 @@ public class InitApp {
 
     public void initStudents() {
         // gryffindor
-        var harry = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, true, "Harry James Potter", LocalDate.of(1980, 7, 31));
-        var ron = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch", "Wizard Chess"}, 1991, 1998, true, "Ronald Bilius Weasley", LocalDate.of(1980, 3, 1));
-        var hermione = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Wizard Chess", "SPEW"}, 1991, 1998, true, "Hermione Jean Granger", LocalDate.of(1979, 9, 19));
-        var neville = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Herbology"}, 1991, 1998, true, "Neville Longbottom", LocalDate.of(1980, 7, 30));
-        var seamus = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, true, "Seamus Finnigan", LocalDate.of(1980, 3, 1));
-        var parvati = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, true, "Parvati Patil", LocalDate.of(1980, 3, 1));
+        var harry = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, false, "Harry James Potter", LocalDate.of(1980, 7, 31));
+        var ron = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch", "Wizard Chess"}, 1991, 1998, false, "Ronald Bilius Weasley", LocalDate.of(1980, 3, 1));
+        var hermione = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Wizard Chess", "SPEW"}, 1991, 1998, false, "Hermione Jean Granger", LocalDate.of(1979, 9, 19));
+        var neville = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Herbology"}, 1991, 1998, false, "Neville Longbottom", LocalDate.of(1980, 7, 30));
+        var seamus = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, false, "Seamus Finnigan", LocalDate.of(1980, 3, 1));
+        var parvati = new HogwartsStudent(House.getGryffindor(), false, new String[]{"Quidditch"}, 1991, 1998, false, "Parvati Patil", LocalDate.of(1980, 3, 1));
 
         // hufflepuff
-        var hannah = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Hannah Abbott", LocalDate.of(1980, 3, 1));
-        var susan = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Susan Bones", LocalDate.of(1980, 3, 1));
-        var justin = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Justin Finch-Fletchley", LocalDate.of(1980, 3, 1));
-        var wayne = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Wayne Hopkins", LocalDate.of(1980, 3, 1));
-        var megan = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Megan Jones", LocalDate.of(1980, 3, 1));
-        var ernest = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, true, "Ernest Macmillan", LocalDate.of(1980, 3, 1));
+        var hannah = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Hannah Abbott", LocalDate.of(1980, 3, 1));
+        var susan = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Susan Bones", LocalDate.of(1980, 3, 1));
+        var justin = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Justin Finch-Fletchley", LocalDate.of(1980, 3, 1));
+        var wayne = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Wayne Hopkins", LocalDate.of(1980, 3, 1));
+        var megan = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Megan Jones", LocalDate.of(1980, 3, 1));
+        var ernest = new HogwartsStudent(House.getHufflepuff(), false, new String[]{"Herbology"}, 1991, 1998, false, "Ernest Macmillan", LocalDate.of(1980, 3, 1));
 
         // ravenclaw
         var amanda = new HogwartsStudent(House.getRavenclaw(), false, new String[]{"Quidditch"}, 1991, 1998, true, "Amanda", LocalDate.of(1980, 3, 1));

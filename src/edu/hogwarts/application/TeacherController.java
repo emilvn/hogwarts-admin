@@ -1,7 +1,6 @@
 package src.edu.hogwarts.application;
 
 import src.edu.generic.Controller;
-import src.edu.generic.Person;
 import src.edu.hogwarts.data.HogwartsTeacher;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     public TeacherController(){
         super();
     }
+
     public TeacherController(HogwartsTeacher... teachers){
         super();
         Collections.addAll(this.teachers, teachers);
@@ -22,6 +22,11 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     public ArrayList<HogwartsTeacher> getAll(){
         return teachers;
     }
+
+    public HogwartsTeacher get(UUID id){
+        return teachers.stream().filter(teacher -> teacher.getId().equals(id)).findFirst().orElse(null);
+    }
+
     public void add(HogwartsTeacher teacher){
         teachers.add(teacher);
     }
@@ -29,13 +34,19 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     public void add(HogwartsTeacher[] teachers){
         Collections.addAll(this.teachers, teachers);
     }
-    public HogwartsTeacher get(UUID id){
-        return teachers.stream().filter(teacher -> teacher.getId().equals(id)).findFirst().orElse(null);
-    }
+
     public void update(UUID id, HogwartsTeacher teacher){
-        //TODO: update(id, Student) - der opdaterer indholdet af et eksisterende Student-objekt med data fra et andet.
+        var oldTeacher = get(id);
+        if(oldTeacher != null){
+            oldTeacher.setFullName(teacher.getFullName());
+            oldTeacher.setBirthDate(teacher.getBirthDate());
+            oldTeacher.setHouse(teacher.getHouse());
+            oldTeacher.setHeadOfHouse(teacher.isHeadOfHouse());
+            oldTeacher.setEmploymentStart(teacher.getEmploymentStart());
+            oldTeacher.setEmploymentEnd(teacher.getEmploymentEnd());
+        }
     }
     public void delete(UUID id){
-        //TODO: delete(id) - der sletter et Student objekt fra listen. Id’et kan ikke genbruges!
+        teachers.removeIf(teacher -> teacher.getId().equals(id));
     }
 }

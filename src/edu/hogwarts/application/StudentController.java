@@ -22,23 +22,33 @@ public class StudentController extends Controller<HogwartsStudent> {
     public ArrayList<HogwartsStudent> getAll(){
         return students;
     }
+
     public HogwartsStudent get(UUID id){
         return students.stream().filter(student -> student.getId().equals(id)).findFirst().orElse(null);
     }
+
     public void add(HogwartsStudent student){
         students.add(student);
     }
+
     public void add(HogwartsStudent[] students){
         Collections.addAll(this.students, students);
     }
-    public HogwartsStudent get(String id){
-        //TODO: get( id ) - der returnerer et enkelt Student objekt
-        return null;
-    }
+
     public void update(UUID id, HogwartsStudent student){
-        //TODO: update(id, Student) - der opdaterer indholdet af et eksisterende Student-objekt med data fra et andet.
+        var oldStudent = get(id);
+        if(oldStudent != null){
+            oldStudent.setFullName(student.getFullName());
+            oldStudent.setBirthDate(student.getBirthDate());
+            oldStudent.setHouse(student.getHouse());
+            oldStudent.setPrefect(student.isPrefect());
+            oldStudent.setTeams(student.getTeams());
+            oldStudent.setEnrollmentYear(student.getEnrollmentYear());
+            oldStudent.setGraduationYear(student.getGraduationYear());
+            oldStudent.setGraduated(student.isGraduated());
+        }
     }
     public void delete(UUID id){
-        //TODO: delete(id) - der sletter et Student objekt fra listen. Id’et kan ikke genbruges!
+        students.removeIf(student -> student.getId().equals(id));
     }
 }

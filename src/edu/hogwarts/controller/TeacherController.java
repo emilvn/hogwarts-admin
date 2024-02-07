@@ -15,7 +15,7 @@ public class TeacherController extends Controller<HogwartsTeacher> {
 
     public TeacherController(HogwartsTeacher... teachers) {
         super();
-        for(var teacher : teachers) {
+        for (var teacher : teachers) {
             this.teachers.put(teacher.getId(), teacher);
         }
     }
@@ -33,7 +33,7 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     }
 
     public void add(HogwartsTeacher... teachers) {
-        for(var teacher : teachers) {
+        for (var teacher : teachers) {
             add(teacher);
         }
     }

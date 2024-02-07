@@ -2,9 +2,6 @@ package src.edu.hogwarts.model;
 
 import src.edu.generic.Student;
 import src.edu.generic.Teacher;
-import src.edu.hogwarts.model.HogwartsStudent;
-import src.edu.hogwarts.model.Subject;
-import src.edu.hogwarts.model.TeachingMaterial;
 
 import java.util.ArrayList;
 import java.util.UUID;

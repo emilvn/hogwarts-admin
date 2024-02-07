@@ -1,7 +1,5 @@
 package src.edu.hogwarts.model;
 
-import src.edu.hogwarts.model.TeachingMaterial;
-
 public class Ingredient extends TeachingMaterial {
     private String name;
     private double amount;

@@ -1,7 +1,5 @@
 package src.edu.hogwarts.model;
 
-import src.edu.hogwarts.model.TeachingMaterial;
-
 public class TextBook extends TeachingMaterial {
     private String title;
     private String author;

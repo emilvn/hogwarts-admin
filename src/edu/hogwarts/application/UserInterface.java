@@ -51,6 +51,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                start();
         }
     }
 
@@ -140,6 +141,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                selectFilterOrSort();
         }
     }
 
@@ -211,7 +213,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
-                selectFilterOrSort();
+                selectFilterHouse();
         }
 
     }
@@ -242,6 +244,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                selectFilterRole();
         }
         selectFilterOrSort();
 
@@ -302,6 +305,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                selectSortOptions();
         }
     }
 
@@ -334,6 +338,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                selectStudentOptions();
         }
     }
 
@@ -399,6 +404,7 @@ public class UserInterface {
                 break;
             default:
                 System.out.println("Invalid option");
+                selectTeacherOptions();
         }
     }
 

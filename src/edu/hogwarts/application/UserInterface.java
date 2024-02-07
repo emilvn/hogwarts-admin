@@ -7,13 +7,14 @@ import src.edu.hogwarts.model.HogwartsPerson;
 import src.edu.hogwarts.model.HogwartsStudent;
 import src.edu.hogwarts.model.HogwartsTeacher;
 import src.edu.hogwarts.model.House;
+import src.edu.hogwarts.util.Utilities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static src.edu.hogwarts.application.Utilities.forceLength;
+import static src.edu.hogwarts.util.Utilities.forceLength;
 
 public class UserInterface {
     private final StudentController studentController;

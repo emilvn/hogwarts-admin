@@ -1,4 +1,4 @@
-package src.edu.hogwarts.application;
+package src.edu.hogwarts.util;
 
 import src.edu.hogwarts.enums.*;
 import src.edu.hogwarts.model.HogwartsPerson;

@@ -13,13 +13,6 @@ public class StudentController extends Controller<HogwartsStudent> {
         super();
     }
 
-    public StudentController(HogwartsStudent... students) {
-        super();
-        for (var student : students) {
-            this.students.put(student.getId(), student);
-        }
-    }
-
     public ArrayList<HogwartsStudent> getAll() {
         return new ArrayList<>(this.students.values());
     }
@@ -40,16 +33,16 @@ public class StudentController extends Controller<HogwartsStudent> {
 
     public void update(UUID id, HogwartsStudent student) {
         var oldStudent = get(id);
-        if (oldStudent != null) {
-            oldStudent.setFullName(student.getFullName());
-            oldStudent.setBirthDate(student.getBirthDate());
-            oldStudent.setHouse(student.getHouse());
-            oldStudent.setPrefect(student.isPrefect());
-            oldStudent.setTeams(student.getTeams());
-            oldStudent.setEnrollmentYear(student.getEnrollmentYear());
-            oldStudent.setGraduationYear(student.getGraduationYear());
-            oldStudent.setGraduated(student.isGraduated());
-        }
+        assert oldStudent != null;
+        oldStudent.setFullName(student.getFullName());
+        oldStudent.setBirthDate(student.getBirthDate());
+        oldStudent.setHouse(student.getHouse());
+        oldStudent.setPrefect(student.isPrefect());
+        oldStudent.setTeams(student.getTeams());
+        oldStudent.setEnrollmentYear(student.getEnrollmentYear());
+        oldStudent.setGraduationYear(student.getGraduationYear());
+        oldStudent.setGraduated(student.isGraduated());
+
     }
 
     public void delete(UUID id) {

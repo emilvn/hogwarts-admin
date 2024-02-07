@@ -85,7 +85,7 @@ public class MenuHandler {
         System.out.println(horizontalLine);
     }
 
-    public void printHouseMenu(){
+    public void printHouseMenu() {
         System.out.println("Select house:");
         System.out.println("1. Gryffindor");
         System.out.println("2. Hufflepuff");

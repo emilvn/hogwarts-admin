@@ -106,7 +106,7 @@ public class InputHandler {
         return s.next().equalsIgnoreCase("y");
     }
 
-    public Person getPersonalDetails(){
+    public Person getPersonalDetails() {
         System.out.println("===== Name =====");
         var nameParts = getNameInput();
         var firstName = nameParts[0];

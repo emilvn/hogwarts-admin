@@ -67,7 +67,4 @@ public class InitApp {
         teacherController.add(staff);
 
     }
-
-    //TODO: add courses
-
 }

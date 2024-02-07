@@ -1,10 +1,12 @@
 package src.edu.hogwarts.application;
 
 import src.edu.generic.Controller;
+import src.edu.generic.Person;
 import src.edu.hogwarts.data.HogwartsTeacher;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 public class TeacherController extends Controller<HogwartsTeacher> {
     private final ArrayList<HogwartsTeacher> teachers = new ArrayList<>();
@@ -27,14 +29,13 @@ public class TeacherController extends Controller<HogwartsTeacher> {
     public void add(HogwartsTeacher[] teachers){
         Collections.addAll(this.teachers, teachers);
     }
-    public HogwartsTeacher get(String id){
-        //TODO: get( id ) - der returnerer et enkelt Student objekt
-        return null;
+    public HogwartsTeacher get(UUID id){
+        return teachers.stream().filter(teacher -> teacher.getId().equals(id)).findFirst().orElse(null);
     }
-    public void update(String id, HogwartsTeacher teacher){
+    public void update(UUID id, HogwartsTeacher teacher){
         //TODO: update(id, Student) - der opdaterer indholdet af et eksisterende Student-objekt med data fra et andet.
     }
-    public void delete(String id){
+    public void delete(UUID id){
         //TODO: delete(id) - der sletter et Student objekt fra listen. Id’et kan ikke genbruges!
     }
 }

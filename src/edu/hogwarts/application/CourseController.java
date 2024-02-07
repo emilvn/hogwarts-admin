@@ -5,6 +5,7 @@ import src.edu.hogwarts.data.Course;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 public class CourseController extends Controller<Course> {
     private final ArrayList<Course> courses = new ArrayList<>();
@@ -20,7 +21,6 @@ public class CourseController extends Controller<Course> {
     public ArrayList<Course> getAll() {
         return this.courses;
     }
-
     public void add(Course course) {
         //TODO: createOne( Student ) - der modtager et Student-objekt, gemmer det i en liste, og tildeler det et id.
     }
@@ -29,16 +29,16 @@ public class CourseController extends Controller<Course> {
         Collections.addAll(this.courses, courses);
     }
 
-    public Course get(String id) {
+    public Course get(UUID id) {
         //TODO: get( id ) - der returnerer et enkelt Student objekt
         return null;
     }
 
-    public void update(String id, Course entity) {
+    public void update(UUID id, Course entity) {
         //TODO: update(id, Student) - der opdaterer indholdet af et eksisterende Student-objekt med data fra et andet.
     }
 
-    public void delete(String id) {
+    public void delete(UUID id) {
         //TODO: delete(id) - der sletter et Student objekt fra listen. Id’et kan ikke genbruges!
     }
 

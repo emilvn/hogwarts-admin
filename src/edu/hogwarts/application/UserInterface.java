@@ -29,10 +29,10 @@ public class UserInterface {
         var choice = s.nextInt();
         switch (choice) {
             case 1:
-                printStudentMenu();
+                selectStudentOptions();
                 break;
             case 2:
-                printTeacherMenu();
+                selectTeacherOptions();
                 break;
             case 3:
                 printAll();
@@ -116,10 +116,10 @@ public class UserInterface {
         System.out.println("0. Back");
         switch (s.nextInt()){
             case 1:
-                printSortOptions();
+                selectSortOptions();
                 break;
             case 2:
-                printFilterOptions();
+                selectFilterOptions();
                 break;
             case 3:
                 sortOption = SortOption.FIRST_NAME;
@@ -137,7 +137,7 @@ public class UserInterface {
     }
 
     // ============== FILTER =================
-    private void printFilterOptions(){
+    private void selectFilterOptions(){
         System.out.println("Filter by:");
         System.out.println("1. Role");
         System.out.println("2. House");
@@ -145,24 +145,24 @@ public class UserInterface {
         var choice = s.nextInt();
         switch (choice) {
             case 1:
-                printFilterByRole();
-                printFilterOptions();
+                selectFilterRole();
+                selectFilterOptions();
                 break;
             case 2:
-                printFilterByHouse();
-                printFilterOptions();
+                selectFilterHouse();
+                selectFilterOptions();
                 break;
             case 0:
                 selectFilterOrSort();
                 break;
             default:
                 System.out.println("Invalid option");
-                printFilterOptions();
+                selectFilterOptions();
         }
 
     }
 
-    private void printFilterByHouse() {
+    private void selectFilterHouse() {
         System.out.println("Select house:");
         System.out.println("1. Gryffindor");
         System.out.println("2. Hufflepuff");
@@ -200,7 +200,7 @@ public class UserInterface {
                 break;
             case 0:
                 filterByOption = null;
-                printFilterOptions();
+                selectFilterOptions();
                 break;
             default:
                 System.out.println("Invalid option");
@@ -209,7 +209,7 @@ public class UserInterface {
 
     }
 
-    private void printFilterByRole() {
+    private void selectFilterRole() {
         System.out.println("Select role:");
         System.out.println("1. Teacher");
         System.out.println("2. Student");
@@ -231,7 +231,7 @@ public class UserInterface {
                 break;
             case 0:
                 filterByOption = null;
-                printFilterOptions();
+                selectFilterOptions();
                 break;
             default:
                 System.out.println("Invalid option");
@@ -242,7 +242,7 @@ public class UserInterface {
 
 
     // ============== SORT =================
-    public void printSortOptions(){
+    public void selectSortOptions(){
         System.out.println("Sort by:");
         System.out.println("1. First name");
         System.out.println("2. Middle name");
@@ -255,37 +255,37 @@ public class UserInterface {
         switch (choice) {
             case 1:
                 sortOption = SortOption.FIRST_NAME;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 2:
                 sortOption = SortOption.MIDDLE_NAME;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 3:
                 sortOption = SortOption.LAST_NAME;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 4:
                 sortOption = SortOption.AGE;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 5:
                 sortOption = SortOption.HOUSE;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 6:
                 sortOption = SortOption.ROLE;
-                selectOrder();
+                selectSortOrder();
                 printAll();
                 selectFilterOrSort();
                 break;
@@ -298,15 +298,15 @@ public class UserInterface {
         }
     }
 
-    private void selectOrder(){
+    private void selectSortOrder(){
         System.out.println("Select order:");
         System.out.println("1. Ascending");
         System.out.println("2. Descending");
         descending = s.nextInt() == 2;
     }
 
-    // ============== STUDENT CRUD =================
-    private void printStudentMenu() {
+    // ============== STUDENT =================
+    private void selectStudentOptions() {
         System.out.println(horizontalLine);
         System.out.println("Please select an option:");
         System.out.println("1. Add student");
@@ -316,11 +316,11 @@ public class UserInterface {
         switch (s.nextInt()) {
             case 1:
                 addStudent();
-                printStudentMenu();
+                selectStudentOptions();
                 break;
             case 2:
                 printStudents();
-                printStudentMenu();
+                selectStudentOptions();
                 break;
             case 0:
                 start();
@@ -339,18 +339,18 @@ public class UserInterface {
         var graduationYear = enrollmentYear + 7;
         var isGraduated = 1992 > graduationYear;
 
-        var nameParts = getNameParts();
+        var nameParts = selectNameParts();
         var firstName = nameParts[0];
         var middleName = nameParts[1];
         var lastName = nameParts[2];
 
         var house = selectHouse();
 
-        var birthDate = getBirthDate();
+        var birthDate = selectBirthDate();
 
         System.out.println("Is the student a prefect? (y/n)");
         var isPrefect = s.next().equalsIgnoreCase("y");
-        var teams = getTeams();
+        var teams = selectTeams();
 
         var student = new HogwartsStudent();
         student.setFirstName(firstName);
@@ -368,56 +368,8 @@ public class UserInterface {
         System.out.println("Student added");
     }
 
-    private House selectHouse(){
-        System.out.println("Enter house:");
-        System.out.println("1. Gryffindor");
-        System.out.println("2. Hufflepuff");
-        System.out.println("3. Ravenclaw");
-        System.out.println("4. Slytherin");
-        System.out.println("0. Unknown");
-        return switch (s.nextInt()) {
-            case 1 -> House.getGryffindor();
-            case 2 -> House.getHufflepuff();
-            case 3 -> House.getRavenclaw();
-            case 4 -> House.getSlytherin();
-            default -> House.getUnknown();
-        };
-    }
-
-    private String[] getTeams(){
-        System.out.println("Enter amount of teams the student is a part of:");
-        var teamCount = s.nextInt();
-        var teams = new String[teamCount];
-        for (int i = 0; i < teamCount; i++) {
-            System.out.println("Enter team " + (i + 1) + " name:");
-            teams[i] = s.next();
-        }
-        return teams;
-    }
-
-    private String[] getNameParts(){
-        System.out.println("Enter first name:");
-        var firstName = s.next();
-        System.out.println("Enter middle name:");
-        var middleName = s.next();
-        System.out.println("Enter last name:");
-        var lastName = s.next();
-        return new String[]{firstName, middleName, lastName};
-    }
-
-    private LocalDate getBirthDate(){
-        System.out.println("Enter birth year (yyyy):");
-        var birthYear = s.nextInt();
-        System.out.println("Enter birth month (1-12):");
-        var birthMonth = s.nextInt();
-        System.out.println("Enter birth day:");
-        var birthDay = s.nextInt();
-        return LocalDate.of(birthYear, birthMonth, birthDay);
-    }
-
-    // ============== TEACHER CRUD =================
-
-    private void printTeacherMenu(){
+    // ============== TEACHER =================
+    private void selectTeacherOptions(){
         System.out.println(horizontalLine);
         System.out.println("Please select an option:");
         System.out.println("1. Add teacher");
@@ -427,11 +379,11 @@ public class UserInterface {
         switch (s.nextInt()) {
             case 1:
                 addTeacher();
-                printTeacherMenu();
+                selectTeacherOptions();
                 break;
             case 2:
                 printTeachers();
-                printTeacherMenu();
+                selectTeacherOptions();
                 break;
             case 0:
                 start();
@@ -448,22 +400,26 @@ public class UserInterface {
         System.out.println("Enter year of employment start (yyyy):");
         var employmentStartYear = s.nextInt();
         System.out.println("Enter month of employment start (1-12):");
-        var employmentStartMonth = s.nextInt();
+        var employmentStartMonth = selectMonth();
         System.out.println("Enter day of employment start:");
-        var employmentStartDay = s.nextInt();
+        var employmentStartDay = selectDay();
         var employmentStart = LocalDate.of(employmentStartYear, employmentStartMonth, employmentStartDay);
 
         System.out.println("Enter year of (expected) employment end (yyyy):");
         var employmentEndYear = s.nextInt();
+        while(employmentEndYear < employmentStartYear){
+            System.out.println("Invalid year. Enter year of (expected) employment end (yyyy):");
+            employmentEndYear = s.nextInt();
+        }
         var employmentEnd = LocalDate.of(employmentEndYear, 1, 1);
 
-        var nameParts = getNameParts();
+        var nameParts = selectNameParts();
         var firstName = nameParts[0];
         var middleName = nameParts[1];
         var lastName = nameParts[2];
 
         var house = selectHouse();
-        var birthDate = getBirthDate();
+        var birthDate = selectBirthDate();
 
         System.out.println("Is the teacher the head of his/her house? (y/n)");
         var isHeadOfHouse = s.next().equalsIgnoreCase("y");
@@ -482,6 +438,72 @@ public class UserInterface {
         System.out.println("Teacher added");
     }
 
+    private House selectHouse(){
+        System.out.println("Enter house:");
+        System.out.println("1. Gryffindor");
+        System.out.println("2. Hufflepuff");
+        System.out.println("3. Ravenclaw");
+        System.out.println("4. Slytherin");
+        System.out.println("0. Unknown");
+        return switch (s.nextInt()) {
+            case 1 -> House.getGryffindor();
+            case 2 -> House.getHufflepuff();
+            case 3 -> House.getRavenclaw();
+            case 4 -> House.getSlytherin();
+            default -> House.getUnknown();
+        };
+    }
+    private String[] selectTeams(){
+        System.out.println("Enter amount of teams the student is a part of:");
+        var teamCount = s.nextInt();
+        while(teamCount < 0 || teamCount > 5){
+            System.out.println("Invalid amount. Enter amount of teams the student is a part of:");
+            teamCount = s.nextInt();
+        }
+        var teams = new String[teamCount];
+        for (int i = 0; i < teamCount; i++) {
+            System.out.println("Enter team " + (i + 1) + " name:");
+            teams[i] = s.next();
+        }
+        return teams;
+    }
+    private String[] selectNameParts(){
+        System.out.println("Enter first name:");
+        var firstName = s.next();
+        System.out.println("Enter middle name:");
+        var middleName = s.next();
+        System.out.println("Enter last name:");
+        var lastName = s.next();
+        return new String[]{firstName, middleName, lastName};
+    }
 
-
+    private LocalDate selectBirthDate(){
+        System.out.println("Enter birth year (yyyy):");
+        var birthYear = s.nextInt();
+        while(birthYear > 1992){
+            System.out.println("Invalid year. Enter birth year (yyyy) before 1992:");
+            birthYear = s.nextInt();
+        }
+        System.out.println("Enter birth month (1-12):");
+        var birthMonth = selectMonth();
+        System.out.println("Enter birth day:");
+        var birthDay = selectDay();
+        return LocalDate.of(birthYear, birthMonth, birthDay);
+    }
+    private int selectMonth(){
+        var month = s.nextInt();
+        while(month < 1 || month > 12){
+            System.out.println("Invalid month. Enter month (1-12):");
+            month = s.nextInt();
+        }
+        return month;
+    }
+    private int selectDay(){
+        var day = s.nextInt();
+        while(day < 1 || day > 31){
+            System.out.println("Invalid day. Enter day:");
+            day = s.nextInt();
+        }
+        return day;
+    }
 }

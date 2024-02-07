@@ -6,6 +6,7 @@ import src.edu.hogwarts.data.SortOption;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 public class StudentController extends Controller<HogwartsStudent> {
     private final ArrayList<HogwartsStudent> students = new ArrayList<>();
@@ -21,6 +22,9 @@ public class StudentController extends Controller<HogwartsStudent> {
     public ArrayList<HogwartsStudent> getAll(){
         return students;
     }
+    public HogwartsStudent get(UUID id){
+        return students.stream().filter(student -> student.getId().equals(id)).findFirst().orElse(null);
+    }
     public void add(HogwartsStudent student){
         students.add(student);
     }
@@ -31,10 +35,10 @@ public class StudentController extends Controller<HogwartsStudent> {
         //TODO: get( id ) - der returnerer et enkelt Student objekt
         return null;
     }
-    public void update(String id, HogwartsStudent student){
+    public void update(UUID id, HogwartsStudent student){
         //TODO: update(id, Student) - der opdaterer indholdet af et eksisterende Student-objekt med data fra et andet.
     }
-    public void delete(String id){
+    public void delete(UUID id){
         //TODO: delete(id) - der sletter et Student objekt fra listen. Id’et kan ikke genbruges!
     }
 }

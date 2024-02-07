@@ -21,7 +21,7 @@ public class TeacherController extends Controller<HogwartsTeacher> {
         return teachers;
     }
     public void add(HogwartsTeacher teacher){
-        //TODO: createOne( Student ) - der modtager et Student-objekt, gemmer det i en liste, og tildeler det et id.
+        teachers.add(teacher);
     }
 
     public void add(HogwartsTeacher[] teachers){

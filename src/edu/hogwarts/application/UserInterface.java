@@ -32,7 +32,7 @@ public class UserInterface {
                 printStudentMenu();
                 break;
             case 2:
-                addTeacher();
+                printTeacherMenu();
                 break;
             case 3:
                 printAll();
@@ -316,6 +316,7 @@ public class UserInterface {
         switch (s.nextInt()) {
             case 1:
                 addStudent();
+                printStudentMenu();
                 break;
             case 2:
                 printStudents();
@@ -338,33 +339,18 @@ public class UserInterface {
         var graduationYear = enrollmentYear + 7;
         var isGraduated = 1992 > graduationYear;
 
-        System.out.println("Enter first name:");
-        var firstName = s.next();
-        System.out.println("Enter middle name:");
-        var middleName = s.next();
-        System.out.println("Enter last name:");
-        var lastName = s.next();
+        var nameParts = getNameParts();
+        var firstName = nameParts[0];
+        var middleName = nameParts[1];
+        var lastName = nameParts[2];
 
         var house = selectHouse();
 
-        System.out.println("Enter birth year (yyyy):");
-        var birthYear = s.nextInt();
-        System.out.println("Enter birth month as a number:");
-        var birthMonth = s.nextInt();
-        System.out.println("Enter birth day:");
-        var birthDay = s.nextInt();
-        var birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
+        var birthDate = getBirthDate();
 
         System.out.println("Is the student a prefect? (y/n)");
         var isPrefect = s.next().equalsIgnoreCase("y");
-        System.out.println("Enter amount of teams the student is a part of:");
-        var teamCount = s.nextInt();
-        var teams = new String[teamCount];
-        for (int i = 0; i < teamCount; i++) {
-            System.out.println("Enter team " + (i + 1) + " name:");
-            teams[i] = s.next();
-        }
-        s.nextLine();
+        var teams = getTeams();
 
         var student = new HogwartsStudent();
         student.setFirstName(firstName);
@@ -380,7 +366,6 @@ public class UserInterface {
 
         studentController.add(student);
         System.out.println("Student added");
-        printStudentMenu();
     }
 
     private House selectHouse(){
@@ -399,14 +384,102 @@ public class UserInterface {
         };
     }
 
+    private String[] getTeams(){
+        System.out.println("Enter amount of teams the student is a part of:");
+        var teamCount = s.nextInt();
+        var teams = new String[teamCount];
+        for (int i = 0; i < teamCount; i++) {
+            System.out.println("Enter team " + (i + 1) + " name:");
+            teams[i] = s.next();
+        }
+        return teams;
+    }
+
+    private String[] getNameParts(){
+        System.out.println("Enter first name:");
+        var firstName = s.next();
+        System.out.println("Enter middle name:");
+        var middleName = s.next();
+        System.out.println("Enter last name:");
+        var lastName = s.next();
+        return new String[]{firstName, middleName, lastName};
+    }
+
+    private LocalDate getBirthDate(){
+        System.out.println("Enter birth year (yyyy):");
+        var birthYear = s.nextInt();
+        System.out.println("Enter birth month (1-12):");
+        var birthMonth = s.nextInt();
+        System.out.println("Enter birth day:");
+        var birthDay = s.nextInt();
+        return LocalDate.of(birthYear, birthMonth, birthDay);
+    }
+
     // ============== TEACHER CRUD =================
 
+    private void printTeacherMenu(){
+        System.out.println(horizontalLine);
+        System.out.println("Please select an option:");
+        System.out.println("1. Add teacher");
+        System.out.println("2. Print teachers");
+        System.out.println("0. Back");
+        System.out.println(horizontalLine);
+        switch (s.nextInt()) {
+            case 1:
+                addTeacher();
+                printTeacherMenu();
+                break;
+            case 2:
+                printTeachers();
+                printTeacherMenu();
+                break;
+            case 0:
+                start();
+                break;
+            default:
+                System.out.println("Invalid option");
+        }
+    }
     private void printTeachers(){
         List<HogwartsPerson> teachers = new ArrayList<>(teacherController.getAll());
         printTable(teachers);
     }
     private void addTeacher() {
-        //TODO: Implement this method
+        System.out.println("Enter year of employment start (yyyy):");
+        var employmentStartYear = s.nextInt();
+        System.out.println("Enter month of employment start (1-12):");
+        var employmentStartMonth = s.nextInt();
+        System.out.println("Enter day of employment start:");
+        var employmentStartDay = s.nextInt();
+        var employmentStart = LocalDate.of(employmentStartYear, employmentStartMonth, employmentStartDay);
+
+        System.out.println("Enter year of (expected) employment end (yyyy):");
+        var employmentEndYear = s.nextInt();
+        var employmentEnd = LocalDate.of(employmentEndYear, 1, 1);
+
+        var nameParts = getNameParts();
+        var firstName = nameParts[0];
+        var middleName = nameParts[1];
+        var lastName = nameParts[2];
+
+        var house = selectHouse();
+        var birthDate = getBirthDate();
+
+        System.out.println("Is the teacher the head of his/her house? (y/n)");
+        var isHeadOfHouse = s.next().equalsIgnoreCase("y");
+
+        var teacher = new HogwartsTeacher();
+        teacher.setFirstName(firstName);
+        teacher.setMiddleName(middleName);
+        teacher.setLastName(lastName);
+        teacher.setBirthDate(birthDate);
+        teacher.setHouse(house);
+        teacher.setHeadOfHouse(isHeadOfHouse);
+        teacher.setEmploymentStart(employmentStart);
+        teacher.setEmploymentEnd(employmentEnd);
+
+        teacherController.add(teacher);
+        System.out.println("Teacher added");
     }
 
 

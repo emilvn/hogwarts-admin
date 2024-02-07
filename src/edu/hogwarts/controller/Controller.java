@@ -1,4 +1,4 @@
-package src.edu.generic;
+package src.edu.hogwarts.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;

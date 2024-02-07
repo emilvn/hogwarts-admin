@@ -1,4 +1,6 @@
-package src.edu.hogwarts.data;
+package src.edu.hogwarts.model;
+
+import src.edu.hogwarts.enums.EmpType;
 
 public interface HogwartsPerson {
     House getHouse();

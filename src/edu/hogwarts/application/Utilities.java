@@ -1,6 +1,8 @@
 package src.edu.hogwarts.application;
 
-import src.edu.hogwarts.data.*;
+import src.edu.hogwarts.enums.*;
+import src.edu.hogwarts.model.HogwartsPerson;
+import src.edu.hogwarts.model.HogwartsTeacher;
 
 import java.util.ArrayList;
 import java.util.Comparator;

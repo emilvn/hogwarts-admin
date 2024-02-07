@@ -1,7 +1,6 @@
-package src.edu.hogwarts.application;
+package src.edu.hogwarts.controller;
 
-import src.edu.generic.Controller;
-import src.edu.hogwarts.data.HogwartsTeacher;
+import src.edu.hogwarts.model.HogwartsTeacher;
 
 import java.util.ArrayList;
 import java.util.Collections;

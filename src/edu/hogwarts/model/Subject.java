@@ -1,4 +1,4 @@
-package src.edu.hogwarts.data;
+package src.edu.hogwarts.model;
 
 public class Subject {
     private String name;

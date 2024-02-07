@@ -1,4 +1,4 @@
-package src.edu.hogwarts.data;
+package src.edu.hogwarts.enums;
 
 public enum SortOption {
     FIRST_NAME,

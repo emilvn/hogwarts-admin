@@ -1,4 +1,4 @@
-package src.edu.hogwarts.data;
+package src.edu.hogwarts.model;
 
 import src.edu.generic.Student;
 

@@ -1,8 +1,10 @@
 package src.edu.hogwarts.application;
 
-import src.edu.hogwarts.data.HogwartsStudent;
-import src.edu.hogwarts.data.HogwartsTeacher;
-import src.edu.hogwarts.data.House;
+import src.edu.hogwarts.controller.StudentController;
+import src.edu.hogwarts.controller.TeacherController;
+import src.edu.hogwarts.model.HogwartsStudent;
+import src.edu.hogwarts.model.HogwartsTeacher;
+import src.edu.hogwarts.model.House;
 
 import java.time.LocalDate;
 

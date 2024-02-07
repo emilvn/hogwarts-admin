@@ -2,7 +2,11 @@ package src.edu.hogwarts.application;
 
 import src.edu.hogwarts.controller.StudentController;
 import src.edu.hogwarts.controller.TeacherController;
-import src.edu.hogwarts.model.*;
+import src.edu.hogwarts.model.HouseNames;
+import src.edu.hogwarts.model.EmpType;
+import src.edu.hogwarts.model.HogwartsPerson;
+import src.edu.hogwarts.model.HogwartsStudent;
+import src.edu.hogwarts.model.HogwartsTeacher;
 import src.edu.hogwarts.util.FilterByOption;
 import src.edu.hogwarts.util.SortOption;
 import src.edu.hogwarts.util.Utilities;
@@ -45,6 +49,7 @@ public class UserInterface {
                 selectFilterOrSort();
                 break;
             case 0:
+                System.out.println("Goodbye");
                 System.exit(0);
                 break;
             default:
@@ -106,25 +111,30 @@ public class UserInterface {
         menuHandler.printFilterOrSortMenu();
         switch (s.nextInt()) {
             case 1:
-                selectSortOptions();
-                break;
-            case 2:
                 selectFilterOptions();
                 break;
+            case 2:
+                selectSortOptions();
+                break;
             case 3:
-                sortOption = SortOption.FIRST_NAME;
-                descending = false;
-                filterByOption = null;
+                resetFilterAndSort();
                 printAll();
                 selectFilterOrSort();
                 break;
             case 0:
+                resetFilterAndSort();
                 start();
                 break;
             default:
                 System.out.println("Invalid option");
                 selectFilterOrSort();
         }
+    }
+
+    private void resetFilterAndSort() {
+        sortOption = SortOption.FIRST_NAME;
+        descending = false;
+        filterByOption = null;
     }
 
     // ============== FILTER =================

@@ -1,7 +1,8 @@
-package src.edu.hogwarts.model;
+package src.edu.hogwarts.model.course;
 
 import src.edu.generic.Student;
 import src.edu.generic.Teacher;
+import src.edu.hogwarts.model.HogwartsStudent;
 
 import java.util.ArrayList;
 import java.util.UUID;

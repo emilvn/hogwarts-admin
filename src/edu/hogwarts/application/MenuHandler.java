@@ -19,6 +19,7 @@ public class MenuHandler {
         System.out.println("Please select an option:");
         System.out.println("1. Filter");
         System.out.println("2. Sort");
+        System.out.println("3. Reset");
         System.out.println("0. Back");
         System.out.println(horizontalLine);
     }

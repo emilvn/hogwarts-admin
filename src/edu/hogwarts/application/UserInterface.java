@@ -60,10 +60,7 @@ public class UserInterface {
 
     private void printTable(List<HogwartsPerson> people) {
         var horizontalLine = "=======================================================================================================================";
-        Utilities.sortBy(people, sortOption);
-        if (descending) {
-            people = people.reversed();
-        }
+        Utilities.sortBy(people, sortOption, descending);
         if (filterByOption != null) {
             people = Utilities.filterBy(people, filterByOption);
         }

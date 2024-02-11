@@ -3,6 +3,7 @@ package src.edu.hogwarts.application;
 import src.edu.generic.Person;
 import src.edu.hogwarts.model.House;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -41,40 +42,35 @@ public class InputHandler {
             birthYear = getYearInput();
         }
         var birthMonth = getMonthInput();
-        var birthDay = getDayInput(birthMonth);
-        return LocalDate.of(birthYear, birthMonth, birthDay);
+        var birthDay = getDayInput();
+        try{
+            return LocalDate.of(birthYear, birthMonth, birthDay);
+        }catch (DateTimeException err){
+            System.out.println("Invalid date. Try again");
+            return getBirthDateInput();
+        }
     }
 
     public LocalDate getDateInput() {
         var birthYear = getYearInput();
         var birthMonth = getMonthInput();
-        var birthDay = getDayInput(birthMonth);
-        return LocalDate.of(birthYear, birthMonth, birthDay);
+        var birthDay = getDayInput();
+        try{
+            return LocalDate.of(birthYear, birthMonth, birthDay);
+        }catch (DateTimeException err){
+            System.out.println("Invalid date. Try again");
+            return getDateInput();
+        }
     }
 
     public int getMonthInput() {
         System.out.println("Enter month (1-12):");
-        var month = s.nextInt();
-        while (month < 1 || month > 12) {
-            System.out.println("Invalid month. Enter month (1-12):");
-            month = s.nextInt();
-        }
-        return month;
+        return s.nextInt();
     }
 
-    public int getDayInput(int month) {
+    public int getDayInput() {
         System.out.println("Enter day:");
-        int maxDay = switch (month) {
-            case 4, 6, 9, 11 -> 30;
-            case 2 -> 29;
-            default -> 31;
-        };
-        var day = s.nextInt();
-        while (day < 1 || day > maxDay) {
-            System.out.println("Invalid day. Enter day:");
-            day = s.nextInt();
-        }
-        return day;
+        return s.nextInt();
     }
 
     public String[] getTeamsInput() {

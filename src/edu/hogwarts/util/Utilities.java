@@ -19,7 +19,7 @@ public class Utilities {
             case HOUSE -> Comparator.comparing(s -> s.getHouse().getName());
             case ROLE -> Comparator.comparing(s -> s instanceof HogwartsTeacher ? "Teacher" : "Student");
         };
-        if(descending){
+        if (descending) {
             comparator = comparator.reversed();
         }
         list.sort(comparator);

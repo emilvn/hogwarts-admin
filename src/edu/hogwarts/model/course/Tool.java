@@ -1,7 +1,5 @@
 package src.edu.hogwarts.model.course;
 
-import src.edu.hogwarts.model.course.TeachingMaterial;
-
 public class Tool extends TeachingMaterial {
     private String name;
     private String description;

@@ -2,11 +2,7 @@ package src.edu.hogwarts.application;
 
 import src.edu.hogwarts.controller.StudentController;
 import src.edu.hogwarts.controller.TeacherController;
-import src.edu.hogwarts.model.HouseNames;
-import src.edu.hogwarts.model.EmpType;
-import src.edu.hogwarts.model.HogwartsPerson;
-import src.edu.hogwarts.model.HogwartsStudent;
-import src.edu.hogwarts.model.HogwartsTeacher;
+import src.edu.hogwarts.model.*;
 import src.edu.hogwarts.util.FilterByOption;
 import src.edu.hogwarts.util.SortOption;
 import src.edu.hogwarts.util.Utilities;
@@ -313,7 +309,7 @@ public class UserInterface {
 
         System.out.println("===== Enrollment year =====");
         var enrollmentYear = inputHandler.getYearInput();
-        while(enrollmentYear < person.getBirthDate().getYear()){
+        while (enrollmentYear < person.getBirthDate().getYear()) {
             System.out.println("Invalid year. Enrollment year must be after birth year.");
             enrollmentYear = inputHandler.getYearInput();
         }
@@ -374,7 +370,7 @@ public class UserInterface {
         System.out.println("===== Employment start =====");
         System.out.println("Enter date of employment start");
         var employmentStart = inputHandler.getDateInput();
-        while(employmentStart.getYear() < person.getBirthDate().getYear()){
+        while (employmentStart.getYear() < person.getBirthDate().getYear()) {
             System.out.println("Invalid date. Employment start must be after birth year.");
             System.out.println("Enter date of employment start");
             employmentStart = inputHandler.getDateInput();

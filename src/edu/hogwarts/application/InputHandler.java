@@ -43,9 +43,9 @@ public class InputHandler {
         }
         var birthMonth = getMonthInput();
         var birthDay = getDayInput();
-        try{
+        try {
             return LocalDate.of(birthYear, birthMonth, birthDay);
-        }catch (DateTimeException err){
+        } catch (DateTimeException err) {
             System.out.println("Invalid date. Try again");
             return getBirthDateInput();
         }
@@ -55,9 +55,9 @@ public class InputHandler {
         var birthYear = getYearInput();
         var birthMonth = getMonthInput();
         var birthDay = getDayInput();
-        try{
+        try {
             return LocalDate.of(birthYear, birthMonth, birthDay);
-        }catch (DateTimeException err){
+        } catch (DateTimeException err) {
             System.out.println("Invalid date. Try again");
             return getDateInput();
         }

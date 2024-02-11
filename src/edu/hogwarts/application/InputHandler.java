@@ -35,7 +35,7 @@ public class InputHandler {
     }
 
     public LocalDate getBirthDateInput() {
-        System.out.println("Birth year must be before 1992.");
+        System.out.println("Enter birthdate, (birth year must be before 1992.)");
         var birthYear = getYearInput();
         while (birthYear > 1992) {
             System.out.println("Invalid year. Must be before 1992.");
